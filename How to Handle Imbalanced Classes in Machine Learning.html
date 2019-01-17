@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://elitedatascience.com/imbalanced-classes -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="wf-poppins-n3-active wf-poppins-n4-active wf-poppins-n5-active wf-poppins-n6-active wf-poppins-n7-active wf-montserrat-n7-active wf-montserrat-n6-active wf-montserrat-n4-active wf-montserrat-n5-active wf-sourcesanspro-n4-active wf-karla-n4-active wf-karla-n7-active wf-karla-i4-active wf-karla-i7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./How to Handle Imbalanced Classes in Machine Learning_files/zxcvbn.min.js.download" type="text/javascript" async=""></script><script src="./How to Handle Imbalanced Classes in Machine Learning_files/469443103391738" async=""></script><script async="" src="./How to Handle Imbalanced Classes in Machine Learning_files/fbevents.js.download"></script><script type="text/javascript" async="" src="./How to Handle Imbalanced Classes in Machine Learning_files/analytics.js.download"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="pingback" href="https://elitedatascience.com/xmlrpc.php">
+
+    <title>How to Handle Imbalanced Classes in Machine Learning</title>
+                        <script type="text/javascript" async="" src="./How to Handle Imbalanced Classes in Machine Learning_files/8015924.js.download"></script><script async="" src="./How to Handle Imbalanced Classes in Machine Learning_files/gtm.js.download"></script><script src="./How to Handle Imbalanced Classes in Machine Learning_files/webfont.js.download" type="text/javascript" async=""></script><script>
+                            /* You can add more configuration options to webfontloader by previously defining the WebFontConfig with your options */
+                            if ( typeof WebFontConfig === "undefined" ) {
+                                WebFontConfig = new Object();
+                            }
+                            WebFontConfig['google'] = {families: ['Poppins:300,400,500,600,700', 'Montserrat:700,600,400,500', 'Source+Sans+Pro:400', 'Karla:400,700,400italic,700italic']};
+
+                            (function() {
+                                var wf = document.createElement( 'script' );
+                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js';
+                                wf.type = 'text/javascript';
+                                wf.async = 'true';
+                                var s = document.getElementsByTagName( 'script' )[0];
+                                s.parentNode.insertBefore( wf, s );
+                            })();
+                        </script>
+                        
+<!-- This site is optimized with the Yoast SEO plugin v7.5.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Imbalanced classes put &quot;accuracy&quot; out of business. This is a surprisingly common problem in machine learning, and this guide shows you how to handle it.">
+<link rel="canonical" href="https://elitedatascience.com/imbalanced-classes">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Handle Imbalanced Classes in Machine Learning">
+<meta property="og:description" content="Imbalanced classes put &quot;accuracy&quot; out of business. This is a surprisingly common problem in machine learning, and this guide shows you how to handle it.">
+<meta property="og:url" content="https://elitedatascience.com/imbalanced-classes">
+<meta property="og:site_name" content="EliteDataScience">
+<meta property="article:section" content="Explainers">
+<meta property="article:published_time" content="2017-07-05T10:41:58-05:00">
+<meta property="article:modified_time" content="2018-05-20T17:42:02-05:00">
+<meta property="og:updated_time" content="2018-05-20T17:42:02-05:00">
+<meta property="og:image" content="https://elitedatascience.com/wp-content/uploads/2017/06/imbalanced-classes-feature-no-text.jpg">
+<meta property="og:image:secure_url" content="https://elitedatascience.com/wp-content/uploads/2017/06/imbalanced-classes-feature-no-text.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Imbalanced classes put &quot;accuracy&quot; out of business. This is a surprisingly common problem in machine learning, and this guide shows you how to handle it.">
+<meta name="twitter:title" content="How to Handle Imbalanced Classes in Machine Learning">
+<meta name="twitter:image" content="https://elitedatascience.com/wp-content/uploads/2017/06/imbalanced-classes-feature-no-text.jpg">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="EliteDataScience » Feed" href="https://elitedatascience.com/feed">
+<link rel="alternate" type="application/rss+xml" title="EliteDataScience » Comments Feed" href="https://elitedatascience.com/comments/feed">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TFDKX2');</script>
+<!-- End Google Tag Manager --><link rel="alternate" type="application/rss+xml" title="EliteDataScience » How to Handle Imbalanced Classes in Machine Learning Comments Feed" href="https://elitedatascience.com/imbalanced-classes/feed">
+<link rel="stylesheet" id="crayon-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-theme-classic-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/classic.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-four-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="mashsb-styles-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/mashsb.min.css" type="text/css" media="all">
+<style id="mashsb-styles-inline-css" type="text/css">
+.mashsb-count {color:#cccccc;}@media only screen and (min-width:568px){.mashsb-buttons a {min-width: 177px;}}
+</style>
+<link rel="stylesheet" id="tve_style_family_tve_flt-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/thrive_flat.css" type="text/css" media="all">
+<link rel="stylesheet" id="tve_leads_forms-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="mashfs-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/mashfs.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="mashnet-styles-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/mashnet.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="op_map_custom-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/op_map.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="opst-css-style-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce_responsive_frontend_styles-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/woocommerce.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="optimizepress-default-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/default.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="ws-plugin--optimizemember-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/optimizeMember-o.php" type="text/css" media="all">
+<link rel="stylesheet" id="optimizepressplus-pack-css-front-all-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/opplus-front-all.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/jquery.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/jquery-migrate.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var OptimizePress = {"ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","SN":"optimizepress","version":"2.5.13","script_debug":".min","localStorageEnabled":"","wp_admin_page":"","op_live_editor":"","op_page_builder":"","op_create_new_page":"","imgurl":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/images\/","OP_URL":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/","OP_JS":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/js\/","OP_PAGE_BUILDER_URL":"","include_url":"https:\/\/elitedatascience.com\/wp-includes\/","op_autosave_interval":"300","op_autosave_enabled":"Y","paths":{"url":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/","img":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/images\/","js":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/js\/","css":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/css\/"},"social":{"twitter":"optimizepress","facebook":"optimizepress","googleplus":"111273444733787349971"},"flowplayerHTML5":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/modules\/blog\/video\/flowplayer\/flowplayer.swf","flowplayerKey":"","flowplayerLogo":"","mediaelementplayer":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/modules\/blog\/video\/mediaelement\/","pb_unload_alert":"This page is asking you to confirm that you want to leave - data you have entered may not be saved.","pb_save_alert":"Please make sure you are happy with all of your options as some options will not be able to be changed for this page later.","search_default":"Search...","optimizemember":{"enabled":true,"version":"1.2.9"},"OP_LEADS_URL":"https:\/\/my.optimizeleads.com\/","OP_LEADS_THEMES_URL":"https:\/\/my.optimizeleads.com\/build\/themes\/","map":{"gmapsApiKey":""},"oppp":{"version":"1.1.8.2","path":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlusPack\/"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/op-jquery-base-all.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/crayon.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mashfs = {"mobile_width":"568"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/mashfs.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/op-front-all.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _zxcvbnSettings = {"src":"https:\/\/elitedatascience.com\/wp-includes\/js\/zxcvbn.min.js"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/zxcvbn-async.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pwsL10n = {"unknown":"Password strength unknown","short":"Very weak","bad":"Weak","good":"Medium","strong":"Strong","mismatch":"Mismatch"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/password-strength-meter.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/optimizeMember-o(1).php"></script>
+<link rel="https://api.w.org/" href="https://elitedatascience.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://elitedatascience.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://elitedatascience.com/wp-includes/wlwmanifest.xml"> 
+<link rel="shortlink" href="https://elitedatascience.com/?p=1182">
+<link rel="alternate" type="application/json+oembed" href="https://elitedatascience.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes">
+<link rel="alternate" type="text/xml+oembed" href="https://elitedatascience.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes&amp;format=xml">
+
+        <!--[if (gte IE 6)&(lte IE 8)]>
+            <script type="text/javascript" src="https://elitedatascience.com/wp-content/plugins/optimizePressPlugin/lib/js/selectivizr-1.0.2-min.js?ver=1.0.2"></script>
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="https://elitedatascience.com/wp-content/plugins/optimizePressPlugin/lib/js//html5shiv.min.js"></script>
+        <![endif]-->
+    
+            <style type="text/css" id="op_header_css">
+            
+            </style>
+            
+<style id="op_custom_css">
+.banner { padding: 20px 0; }
+.banner .op-logo { padding: 0; }
+.banner .op-logo img { max-width: 225px; }
+
+body #nav-side.navigation #navigation-alongside  { margin: 0; }
+
+.op-page-header.cf { display: none !important; }
+
+.single-post-content ol li, .single-post-content ul li { margin: 2px 0px 2px 15px; 
+list-style-position: outside;}
+
+.single-post-content ol, .single-post-content ul { margin-left: 10px; }
+
+body.single-post .post-image { display: none; }
+
+.single-post-content ol li:first-child, .single-post-content ul li:first-child { margin-top: 5px; }
+
+.single-post-content h3 { padding-top: 20px; }
+.single-post-content h4 { font-weight: 500; }
+
+.latest-post h1.the-title { font-size: 30px; }
+
+
+.single-post-content .image-text-style-1 .image-text-style-img-container img { box-shadow: 0 0 8px rgba(0,0,0,.33); }
+
+.single-post-content .image-text-style-1 .image-text-align-left { padding-left: 0px; }
+
+.single-post-content .image-text-style-1 .image-text-align-center { padding-left: 0px; }
+
+.single-post-content .image-text-style-1 h3 { font-size: 16px; padding-bottom: 0px; font-weight:bold; }
+
+.single-post-content .image-text-style-1 img { height: auto; }
+
+.image-text-style-1 span { width: 49%; }
+
+@media only screen and (max-width: 767px) {
+.image-text-style-1 span {
+    width: 100%;
+} }
+
+.footer li a { font-weight: 500; }
+
+.older-post h4 a { 
+font-weight: bold;
+font-size: 25px;
+front-family: "Helvetica Neue", Helvetica, sans-serif;
+color: #222;
+}
+</style>
+
+            <meta property="fb:app_id" content="1841787069391547">
+        <link rel="icon" href="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-32x32.png" sizes="32x32">
+<link rel="icon" href="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-180x180.png">
+<meta name="msapplication-TileImage" content="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-270x270.png">
+<style type="text/css" title="dynamic-css" class="options-output">.sub-menu{border-bottom-color:#005BDC;}.op-navbar{background:#ffffff;}.op-navbar{border-bottom-color:#f0f0f0;}.header-style-centered #navbar, .header-style-with-tagline #navbar{border-top-color:#f0f0f0;}.op-footer{background:#fcfcfc;}.op-footer h1, .op-footer h2, .op-footer h3, .op-footer h4, .op-footer h5, .op-footer h6, .op-footer .calendar_wrap{color:#191919;}.op-footer, .footer-copyright, .op-footer p, .op-footer ul, .op-footer{color:#6d6d6d;}.op-footer a{color:#6d6d6d;}.op-footer a:hover{color:#6d6d6d;}.op-footer a:active{color:#6d6d6d;}.op-entry a{color:#0f87c9;}.op-entry a:hover{color:#0f87c9;}.op-entry a:active{color:#0f87c9;}.btn a, .btn, .btn-primary,
+                                        .op-navbar .nav-close-wrap,
+                                        .pagination > .btn,
+                                        #infinite-handle span button,
+                                        .woocommerce-product-search input[type=submit],
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle{background-color:#005BDC;}.op-read-more{border-color:#005BDC;}.btn a:hover,
+                                        .btn:hover,
+                                        .btn-primary:hover,
+                                        .btn a:active,
+                                        .btn:active,
+                                        .btn-primary:active,
+                                        .pagination > .btn:hover,
+                                        .pagination > .btn:active,
+                                        #infinite-handle span button:hover,
+                                        #infinite-handle span button:active,
+                                        .woocommerce-product-search input[type=submit]:hover,
+                                        .woocommerce-product-search input[type=submit]:active,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range:hover,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range:active,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle:hover,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle:active,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content:hover,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content:active{background-color:#0054cc;}.op-read-more:hover,
+                                        .op-read-more:active{border-color:#0054cc;}.btn a, .btn, .btn-primary,
+                            .pagination > .btn,
+                            .pagination > .btn:hover,
+                            .pagination > .btn:active,
+                            #infinite-handle span button,
+                            #infinite-handle span button:hover,
+                            #infinite-handle span button:hover:active,
+                            .op-navbar .nav-close-wrap,
+                            .woocommerce-product-search input[type=submit]{color:#ffffff;}.op-navbar .navbar-nav > .menu-item > a, .op-navbar .navbar-nav li .navbar-tagline,
+                                .op-navbar .navbar-nav .menu-item .menu-item-search-link,
+                                .op-navbar .navbar-nav .menu-item .op-search-form-close-button,
+                                .op-navbar.navbar-default .navbar-toggle,
+                                .op-search-form-top-menu {color:#6b6b6b;} .op-navbar .navbar-nav > .menu-item:hover > a,
+                                .op-navbar .navbar-nav li .navbar-tagline:hover,
+                                .op-navbar .navbar-nav .menu-item .menu-item-search-link:hover,
+                                .op-navbar .navbar-nav .menu-item .op-search-form-close-button:hover,
+                                .op-navbar.navbar-default .navbar-toggle:hover,
+                                .op-navbar .navbar-nav li .sub-menu a:hover {color:#6b6b6b;} .op-navbar .navbar-nav > .menu-item.active a,
+                                .op-navbar .navbar-nav > .menu-item.active:hover a {color:#6b6b6b;} .op-small-category-link a,
+                            .op-small-category-link a:hover,
+                            .op-small-category-link a:focus,
+                            .op-small-category-link a:active,
+                            .op-small-category-link span,
+                            .op-content-grid-row .op-small-category-link a,
+                            .op-homepage-hero-category,
+                            .op-homepage-hero-category:hover,
+                            .op-homepage-hero-category:focus,
+                            .op-homepage-hero-category:active{color:#ffffff;}.op-small-category-link a,
+                                        .op-small-category-link a:hover,
+                                        .op-small-category-link a:focus,
+                                        .op-small-category-link a:active,
+                                        .op-small-category-link span,
+                                        .op-homepage-hero-category,
+                                        .op-homepage-hero-category:hover,
+                                        .op-homepage-hero-category:focus,
+                                        .op-homepage-hero-category:active{background-color:#1cb186;}body, p, .sm-wrap{font-family:Arial, Helvetica, sans-serif;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading body, p, .sm-wrap,{opacity: 0;}.ie.wf-loading body, p, .sm-wrap,{visibility: hidden;}body, p{font-size:18px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading body, p,{opacity: 0;}.ie.wf-loading body, p,{visibility: hidden;}h1, h2, h3, h4, h5, h6, .op-entry .op-author-name{font-family:Poppins;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h1, h2, h3, h4, h5, h6, .op-entry .op-author-name,{opacity: 0;}.ie.wf-loading h1, h2, h3, h4, h5, h6, .op-entry .op-author-name,{visibility: hidden;}h1{line-height:40px;font-size:35px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h1,{opacity: 0;}.ie.wf-loading h1,{visibility: hidden;}h2{line-height:34px;font-size:26px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h2,{opacity: 0;}.ie.wf-loading h2,{visibility: hidden;}h3{line-height:33px;font-size:22px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h3,{opacity: 0;}.ie.wf-loading h3,{visibility: hidden;}h4{line-height:30px;font-size:20px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h4,{opacity: 0;}.ie.wf-loading h4,{visibility: hidden;}h5{line-height:27px;font-size:17px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h5,{opacity: 0;}.ie.wf-loading h5,{visibility: hidden;}h6{line-height:24px;font-size:14px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h6,{opacity: 0;}.ie.wf-loading h6,{visibility: hidden;}.op-homepage-hero-button,
+                            .op-homepage-hero-button:hover,
+                            .op-homepage-hero-button:active,
+                            .op-homepage-hero-button:focus{color:#ffffff;}.op-homepage-hero-button-style-2{border-color:#ffffff;}.op-homepage-hero-button{background-color:#005BDC;}.op-homepage-hero-button:hover,
+                                        .op-homepage-hero-button:active,
+                                        .op-homepage-hero-button:focus{background-color:#0054cc;}.op-homepage-hero{background-size:cover;background-image:url('https://elitedatascience.com/wp-content/uploads/2018/02/future-city-3-comp.jpeg');}.op-homepage-hero-container{background-color:rgba(50,50,50,0.75);}.op-homepage-hero, .op-homepage-hero-content, .op-homepage-hero-title, .op-homepage-hero-subtitle, .op-homepage-hero-excerpt{color:#ffffff;}.op-homepage-hero-title::after{background-color:#ffffff;}.op-homepage-hero-title{font-family:Poppins;font-weight:600;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-title,{opacity: 0;}.ie.wf-loading .op-homepage-hero-title,{visibility: hidden;}.op-homepage-hero-subtitle,.op-homepage-hero-excerpt{font-family:Karla;font-weight:400;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-subtitle,.wf-loading .op-homepage-hero-excerpt,{opacity: 0;}.ie.wf-loading .op-homepage-hero-subtitle,.ie.wf-loading .op-homepage-hero-excerpt,{visibility: hidden;}.op-homepage-hero-button{font-family:Karla;font-weight:400;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-button,{opacity: 0;}.ie.wf-loading .op-homepage-hero-button,{visibility: hidden;}.op-hero-header,
+                .op-hero-area .feature-title,
+                .op-hero-area .op-headline,
+                .op-hero-area p,
+                .op-hero-layout-meta-wrap,
+                .op-blog-meta-wrapper,
+                .op-hero-layout-meta-wrap a{color:#ffffff;}.page .op-hero-header, .page .op-hero-area .feature-title, .page .op-hero-area .op-headline, .page .op-hero-layout-meta-wrap, .page .op-blog-meta-wrapper, .page .op-hero-layout-meta-wrap a{color:#ffffff;}</style><link rel="stylesheet" href="./How to Handle Imbalanced Classes in Machine Learning_files/css"><style type="text/css">.op-blog-post-header {background-color: #23282d;
+                background-image: -moz-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: -webkit-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: linear-gradient(to bottom, #23282d 0%, #23282d 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#23282d', endColorstr='#23282d', GradientType=0); color: #ffffff; }.op-hero-area .feature-title {color: #ffffff; }.op-hero-area .op-headline {color: #ffffff; }.page .op-hero-area .op-headline {color: #ffffff; }.op-hero-area .op-blog-meta-wrapper {color: #ffffff; }.op-hero-area .op-hero-layout-meta-wrap a {color: #ffffff; }.op-blog-post-header .op-small-category-link a {color: ; background-color: ; }</style><style type="text/css">.fancybox-margin{margin-right:17px;}</style><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+
+<body class="post-template-default single single-post postid-1182 single-format-standard op-plugin op-navbar-fixed op-not-touch-device" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+        <div id="page" class="page-container hfeed site">
+        <a class="skip-link screen-reader-text" href="https://elitedatascience.com/imbalanced-classes#content">Skip to content</a>
+        <header id="masthead" class="site-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader" role="banner">
+            <nav class="op-navbar navbar navbar-default op-navbar-fixed" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation" style="margin-top: 0px; top: 0px;">
+                                <div class="container op-container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="https://elitedatascience.com/">
+                            <img src="./How to Handle Imbalanced Classes in Machine Learning_files/elitedatascience-dark.png" srcset="https://elitedatascience.com/wp-content/uploads/2016/11/elitedatascience-dark.png 1x, https://elitedatascience.com/wp-content/uploads/2016/11/elitedatascience-dark.png 2x" title="EliteDataScience" alt="EliteDataScience" width="485" height="50">                        </a>
+                        <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                    </div> <!--/.navbar-header -->
+                    <div id="navbar" class="pull-right navbar-menu">
+                        <div class="nav-close-wrap text-right ">
+                            <span class="glyphicon glyphicon-remove closenav"></span>
+                        </div>
+                        <div class="menu-header-navigation-container"><ul id="menu-header-navigation" class="nav navbar-nav"><li id="menu-item-1586" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1586"><a href="https://elitedatascience.com/start-here"><i class="fa fa-bolt"></i><span class="fontawesome-text"> Start Here</span></a></li>
+<li id="menu-item-1886" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1886"><a href="https://elitedatascience.com/primer"><i class="fa fa-book"></i><span class="fontawesome-text"> Primer</span></a></li>
+<li id="menu-item-1577" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-1577"><a href="https://elitedatascience.com/"><i class="fa fa-thumb-tack"></i><span class="fontawesome-text"> Articles</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1572" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1572"><a href="https://elitedatascience.com/category/guides">Guides</a></li>
+	<li id="menu-item-1570" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1570"><a href="https://elitedatascience.com/category/explainers">Concept Explainers</a></li>
+	<li id="menu-item-1571" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1571"><a href="https://elitedatascience.com/category/tutorials">Code Tutorials</a></li>
+	<li id="menu-item-1573" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1573"><a href="https://elitedatascience.com/category/career">Career Help</a></li>
+	<li id="menu-item-1569" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1569"><a href="https://elitedatascience.com/category/resources">Tools &amp; Resources</a></li>
+</ul>
+</li>
+<li id="menu-item-1486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1486"><a href="https://elitedatascience.com/imbalanced-classes#"><i class="fa fa-university"></i><span class="fontawesome-text"> Products</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1429" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1429"><a href="https://elitedatascience.com/machine-learning-masterclass">ML Masterclass</a></li>
+	<li id="menu-item-1487" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1487"><a href="https://elitedatascience.com/interview-prep-kit">Interview Prep Kit</a></li>
+</ul>
+</li>
+
+            <li class="menu-item menu-item-search-form">
+                <span class="menu-item-search-form-container menu-item-search-form-item menu-item-search-toggle menu-item-hidden">
+                    <form method="get" class="searchform" action="https://elitedatascience.com/">
+                        <div class="inline-flex">
+                            <input size="15" class="op-search-form-top-menu" type="text" value="" name="s" id="s" placeholder="Enter your search keyword(s) here and press enter">
+                        </div>
+                    </form>
+                    <a class="op-search-form-close-button" id="op_remove_search_link" href="https://elitedatascience.com/imbalanced-classes#">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="visuallyhidden">Close Search Form</span>
+                    </a>
+                </span>
+
+                <span class="menu-item-search-form-item menu-item-search-link menu-item-search-toggle">
+                    <a class="menu-item-search-link" id="op_search_link" href="https://elitedatascience.com/imbalanced-classes#">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <span class="visuallyhidden">Open Search Form</span>
+                    </a>
+                </span>
+            </li>
+
+            </ul></div>                    </div><!--/.nav-collapse -->
+                </div> <!--/.container-fluid -->
+            </nav>
+        </header>
+        <main id="main" class="site-content" role="main">
+            <div class="op_optin_single_after_header_container op_optin_style_dark">
+    <div id="op-trigger-op_theme_popup_5c07c6106524d" class="optin-box-optimizetheme-lightbox optin-box-optimizetheme optin-box-optimizetheme-after-header optin-box-optimizetheme-dark">
+        <div class="container op-container optin-box-content optin-box-optimizetheme-content"><div class="optin-box-optimizetheme-headline-container"><h2 class="optin-box-optimizetheme-headline">Shorten the Learning Curve!</h2><p class="optin-box-optimizetheme-subheadline">Download 10+ Bonus Resources for Data Science &amp; Machine Learning</p></div>
+            <div class="optin-box-optimizetheme-open-lightbox-container">
+                <button type="button" class="default-button" data-toggle="modal" data-target="#op_theme_popup_5c07c6106524d">Get instant access!</button>
+            </div>
+        </div></div>
+
+    <div class="optin-box-optimizetheme-modal modal fade" id="op_theme_popup_5c07c6106524d" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <button type="button" class="close optin-box-optimizetheme-close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+            <div class="modal-content">
+                <div class="modal-body">
+                <aside id="op-optin-5c070c5278854" class="optin-box optin-box-optimizetheme optin-box-optimizetheme-after-header optin-box-optimizetheme-dark">
+    <div class="container op-container optin-box-content optin-box-optimizetheme-content">
+        
+        <div class="optin-box-optimizetheme-headline-container">
+            <h2 class="optin-box-optimizetheme-headline">EDS Subscriber Vault</h2>            <p class="optin-box-optimizetheme-subheadline">Download free coding cheatsheets, machine learning checklists, PDF worksheets, resource lists, and more...</p>        </div>
+
+        <div class="optin-box-optimizetheme-form-container">
+        <form action="https://www.getdrip.com/forms/297767675/submissions" method="post" class="cf op-optin-validation"><div style="display:none"><input type="hidden" name="redirect_url" value="https://www.getdrip.com/forms/297767675/submissions"><input type="hidden" name="email_field" value="fields[email]"></div>                <div class="text-boxes optin-box-optimizetheme-text-boxes">
+                    <div class="text-box name"><input type="text" required="required" name="fields[first_name]" placeholder="Enter your first name" value=""></div><div class="text-box email"><input type="email" required="required" name="fields[email]" placeholder="Enter your best email" value=""></div>                </div>
+                <button type="submit" class="default-button"><span>Let's Start!</span></button>                            <input type="hidden" id="op_optin_nonce" name="op_optin_nonce" value="7c50327666"><input type="hidden" name="_wp_http_referer" value="/imbalanced-classes"></form>
+        </div>
+        <div class="optin-box-optimizetheme-privacy">No spam. No nonsense.</div>
+            </div>
+    <style>#op-optin-5c070c5278854 .default-button { color: #FFFFFF; background-color: #276CF2; }#op-optin-5c070c5278854 .default-button:hover { background-color: #0054cc; }</style>
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div><style>#op-trigger-op_theme_popup_5c07c6106524d .optin-box-optimizetheme-open-lightbox-container .default-button { color: #FFFFFF; background-color: #276CF2; }#op-trigger-op_theme_popup_5c07c6106524d .optin-box-optimizetheme-open-lightbox-container .default-button:hover { background-color: #0054cc; }</style></div>
+            <article id="post-1182" class="post-1182 post type-post status-publish format-standard has-post-thumbnail hentry category-explainers category-tutorials" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+                <div class="op-hero-area op-blog-post" role="banner">
+                    <header class="op-hero-area op-blog-post-header">
+    <div class="op-blog-hero-background">
+                <div class="op-blog-header-content op-blog-header-content-img">
+            <div class="container op-container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="op-category-wrap">        <div class="op-small-category-link"><a href="https://elitedatascience.com/category/explainers" rel="category tag">Explainers</a></div> <div class="op-small-category-link"><a href="https://elitedatascience.com/category/tutorials" rel="category tag">Tutorials</a></div>
+    </div><h1 class="op-headline" itemprop="headline"><a href="https://elitedatascience.com/imbalanced-classes">How to Handle Imbalanced Classes in Machine Learning</a></h1><div class="op-blog-meta-wrapper"><span class="op-post-date"><span class="glyphicon glyphicon-time op-list-space-right-small" aria-hidden="true"></span><time class="entry-date published updated op-list-space-right-large" datetime="2017-07-05T10:41:58+00:00" itemprop="datePublished">July 5, 2017</time></span></div>                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="attachment-post-thumbnail size-post-thumbnail wp-post-image" src="./How to Handle Imbalanced Classes in Machine Learning_files/imbalanced-classes-feature-no-text.jpg" alt="How to Handle Imbalanced Classes in Machine Learning" width="1200" height="628"><div class="op-blog-hero-background-image"></div><div class="post-thumbnail-placeholder"></div><style> .op-blog-post-header { background-color: #23282d;
+                background-image: -moz-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: -webkit-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: linear-gradient(to bottom, #23282d 0%, #23282d 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#23282d', endColorstr='#23282d', GradientType=0); } .op-blog-header-content-img { background-color:rgba(50, 50, 50, 0.75) }.op-blog-hero-background-image { background-image: url('https://elitedatascience.com/wp-content/uploads/2017/06/imbalanced-classes-feature-no-text.jpg'); background-size: cover;background-position: center center; } </style>    </div>
+</header>
+                </div>
+
+                
+                <div id="primary" class="content-area">
+                    
+                                            <div class="op-entry single container op-container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-8 col-md-offset-2">
+                                    
+<div class="entry-content" itemprop="text">
+    <aside class="mashsb-container mashsb-main mashsb-stretched"><div class="mashsb-box"><div class="mashsb-count mash-small" style="float:left;"><div class="counts mashsbcount">1k</div><span class="mashsb-sharetext">SHARES</span></div><div class="mashsb-buttons"><a class="mashicon-facebook mash-small mash-center mashsb-noshadow" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Share</span></a><a class="mashicon-google mash-small mash-center mashsb-noshadow" href="https://plus.google.com/share?text=How+to+Handle+Imbalanced+Classes+in+Machine+Learning&amp;url=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Google</span></a><a class="mashicon-linkedin mash-small mash-center mashsb-noshadow" href="https://www.linkedin.com/shareArticle?trk=How+to+Handle+Imbalanced+Classes+in+Machine+Learning&amp;url=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Linkedin</span></a><a class="mashicon-twitter mash-small mash-center mashsb-noshadow" href="https://twitter.com/intent/tweet?text=How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning&amp;url=https://elitedatascience.com/imbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Tweet</span></a><div class="onoffswitch2 mash-small mashsb-noshadow" style="display:none;"></div></div>
+            </div>
+                <div style="clear:both;"></div><div class="mashsb-toggle-container"></div></aside>
+            <!-- Share buttons by mashshare.net - Version: 3.5.3--><div class="tve-tl-cnt-wrap"><p>Imbalanced classes put “accuracy” out of business. This is a surprisingly common problem in machine learning (specifically in&nbsp;classification), occurring&nbsp;in&nbsp;datasets with a disproportionate ratio&nbsp;of&nbsp;observations in each&nbsp;class.</p>
+<p>Standard accuracy no longer reliably measures&nbsp;performance, which makes model training&nbsp;much trickier.</p>
+<p>Imbalanced classes appear in many domains, including:</p>
+<ul>
+<li>Fraud detection</li>
+<li>Spam filtering</li>
+<li>Disease&nbsp;screening</li>
+<li>SaaS subscription churn</li>
+<li>Advertising click-throughs</li>
+</ul>
+<p>In this guide, we’ll explore 5 effective ways&nbsp;to&nbsp;handle imbalanced classes.</p><div class="tve-leads-in-content tve-tl-anim tve-leads-track-in_content-41 tl-anim-instant tve-leads-triggered"><div class="tl-style" id="tve_tcb2_set-022" data-state="41"><style type="text/css" class="tve_custom_style">@import url("//fonts.googleapis.com/css?family=Roboto:100,400,300,500&subset=latin");@import url("//fonts.googleapis.com/css?family=Open+Sans:300,700&subset=latin");@media (min-width: 300px){#tve_editor [data-css="tve-u-165b01867cd4284"] strong { font-weight: 300; }[data-css="tve-u-115b01867cd4136"] strong { font-weight: 700 !important; }[data-css="tve-u-135b01867cd41b7"] { margin-top: 5px !important; }[data-css="tve-u-85b01867cd4075"] { margin-top: 20px !important; margin-bottom: 10px !important; }#tve_editor [data-css="tve-u-165b01867cd4284"]:hover button { background-color: rgb(189, 74, 67) !important; }#tve_editor [data-css="tve-u-155b01867cd4243"]:hover input { background-color: rgb(204, 204, 204) !important; }#tve_editor [data-css="tve-u-145b01867cd41fa"]:hover input { background-color: rgb(204, 204, 204) !important; }[data-css="tve-u-125b01867cd4176"] { border-bottom: 1px solid rgba(49, 59, 69, 0.5); border-right: 1px solid rgba(49, 59, 69, 0.5); border-left: 1px solid rgba(49, 59, 69, 0.5); z-index: 1; border-top: none; border-image: initial; padding: 25px 20px 11px !important; margin-top: -24px !important; }[data-css="tve-u-35b01867cd3f35"] { padding-top: 0px !important; padding-bottom: 0px !important; }[data-css="tve-u-65b01867cd3ff5"] { max-width: 75%; }[data-css="tve-u-45b01867cd3f75"] { max-width: 25%; }[data-css="tve-u-55b01867cd3fb5"] { float: none; margin-left: auto; margin-right: auto; width: 142px; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px; margin-top: 10px !important; }[data-css="tve-u-15b01867cd3eb3"] { z-index: 6; border: none; padding: 20px 20px 30px !important; }#tve_editor [data-css="tve-u-165b01867cd4284"] button { font-size: 20px; font-family: Roboto; border-radius: 0px; overflow: hidden; line-height: 28px; font-weight: normal !important; background-color: rgb(236, 92, 84) !important; padding-top: 13px !important; padding-bottom: 13px !important; }#tve_editor [data-css="tve-u-155b01867cd4243"] input { line-height: 28px; color: rgb(51, 51, 51); font-family: Roboto; font-weight: 300; border-radius: 0px; overflow: hidden; border: none; background-image: none !important; background-color: rgb(221, 222, 223) !important; padding: 13px !important; }#tve_editor [data-css="tve-u-145b01867cd41fa"] input { line-height: 28px; color: rgb(51, 51, 51); font-family: Roboto; font-weight: 300; border-radius: 0px; overflow: hidden; border: none; background-image: none !important; background-color: rgb(221, 222, 223) !important; padding: 13px !important; }[data-css="tve-u-115b01867cd4136"] { line-height: 27px !important; }#tve_editor [data-css="tve-u-115b01867cd4136"] { font-family: "Open Sans" !important; font-weight: 300 !important; color: rgb(255, 255, 255) !important; font-size: 17px !important; }[data-css="tve-u-95b01867cd40b5"] strong { font-weight: 500 !important; }[data-css="tve-u-95b01867cd40b5"] { line-height: 40px !important; }#tve_editor [data-css="tve-u-95b01867cd40b5"] { font-weight: 300; font-family: Roboto !important; color: rgb(255, 255, 255) !important; font-size: 32px !important; }[data-css="tve-u-25b01867cd3ef4"] { clip-path: url("#clip-bottom-186bpaq89b1zs"); background-color: rgb(49, 59, 69) !important; }[data-css="tve-u-05b01867cd3e6c"] { background-color: rgb(255, 255, 255) !important; padding: 0px !important; }}@media (max-width: 767px){[data-css="tve-u-125b01867cd4176"] { padding-left: 14px !important; padding-bottom: 14px !important; padding-right: 14px !important; }[data-css="tve-u-15b01867cd3eb3"] { padding: 14px !important; }[data-css="tve-u-75b01867cd4035"] { text-align: center; }[data-css="tve-u-55b01867cd3fb5"] { width: 90px; margin-bottom: 0px !important; }[data-css="tve-u-95b01867cd40b5"] { line-height: 1.2em !important; }#tve_editor [data-css="tve-u-95b01867cd40b5"] { font-size: 28px !important; }[data-css="tve-u-105b01867cd40f6"] { padding-bottom: 10px !important; }[data-css="tve-u-25b01867cd3ef4"] { clip-path: url("#clip-mobile-bottom-186bpaq89b1zs"); }}</style><div class="tve-leads-conversion-object" data-tl-type="in_content"><div class="tve_flt"><div id="tve_editor" class="tve_shortcode_editor"><div class="thrv-leads-form-box tve_no_drag tve_no_icons thrv_wrapper tve_editor_main_content thrv-leads-in-content tve_empty_dropzone" style="" data-css="tve-u-05b01867cd3e6c"><div class="thrv_wrapper thrv-page-section" style="" data-css="tve-u-15b01867cd3eb3">
+<div class="tve-page-section-out" data-css="tve-u-25b01867cd3ef4" data-clip-id="186bpaq89b1zs"><svg width="0" height="0" class="tve-decoration-svg"><defs><clippath id="clip-bottom-186bpaq89b1zs" class="decoration-clip clip-path-bottom" clipPathUnits="objectBoundingBox" data-screen="" decoration-type="pointer" pointer-width="5" pointer-height="9" style=""><polygon points="0 0, 0 0.91, 0.475 0.91, 0.5 1, 0.525 0.91, 1 0.91, 1 0"></polygon></clippath><clippath id="clip-mobile-bottom-186bpaq89b1zs" class="decoration-clip clip-path-mobile-bottom" clipPathUnits="objectBoundingBox" data-screen="mobile-" decoration-type="pointer" pointer-width="5" pointer-height="2" style=""><polygon points="0 0, 0 0.98, 0.475 0.98, 0.5 1, 0.525 0.98, 1 0.98, 1 0"></polygon></clippath></defs></svg></div>
+<div class="tve-page-section-in tve_empty_dropzone"><div class="thrv_wrapper thrv-columns" style=""><div class="tcb-flex-row tcb-resized tcb--cols--2" data-css="tve-u-35b01867cd3f35"><div class="tcb-flex-col" data-css="tve-u-45b01867cd3f75" style=""><div class="tcb-col tve_empty_dropzone" style=""><div class="thrv_wrapper tve_image_caption" data-css="tve-u-55b01867cd3fb5" style=""><span class="tve_image_frame" style="width: 100%;"><img class="tve_image wp-image-1764" alt="Imbalanced Classes Cheatsheet Cover" width="240" height="340" title="Imbalanced Classes Cheatsheet Cover" data-id="1764" src="./How to Handle Imbalanced Classes in Machine Learning_files/Imbalanced-Classes-Cheatsheet-Cover.jpg" style="width: 100%;"></span></div></div></div><div class="tcb-flex-col" data-css="tve-u-65b01867cd3ff5" style=""><div class="tcb-col tve_empty_dropzone" style="" data-css="tve-u-75b01867cd4035"><div class="thrv_wrapper thrv_text_element tve_empty_dropzone on_hover" style="" data-css="tve-u-85b01867cd4075"><p data-css="tve-u-95b01867cd40b5" data-default="Enter your text here..."><strong>Free: Code Cheatsheet</strong></p></div><div class="thrv_wrapper thrv_text_element tve_empty_dropzone" style="" data-css="tve-u-105b01867cd40f6"><p data-css="tve-u-115b01867cd4136" data-default="Enter your text here...">Get all of this tutorial's code in a <strong>handy PDF cheatsheet</strong> + plenty of other free cheatsheets, checklists, worksheets, and resource lists in our <strong><em>Subscriber Vault.</em></strong></p></div></div></div></div></div></div>
+</div><div class="thrv_wrapper thrv-page-section" style="" data-css="tve-u-125b01867cd4176">
+<div class="tve-page-section-out"></div>
+<div class="tve-page-section-in tve_empty_dropzone"><div class="thrv_wrapper thrv_lead_generation" data-connection="api" style="" data-css="tve-u-135b01867cd41b7"><input type="hidden" class="tve-lg-err-msg" value="{&quot;email&quot;:&quot;Email address invalid&quot;,&quot;phone&quot;:&quot;Phone number invalid&quot;,&quot;password&quot;:&quot;Password invalid&quot;,&quot;passwordmismatch&quot;:&quot;Password mismatch error&quot;,&quot;required&quot;:&quot;Required field missing&quot;}">
+<div class="thrv_lead_generation_container tve_clearfix">
+<form action="https://elitedatascience.com/imbalanced-classes#" method="post" novalidate="novalidate">
+<div class="tve_lead_generated_inputs_container tve_clearfix tve_empty_dropzone">
+<div class="thrv_wrapper thrv-columns"><div class="tcb-flex-row tcb--cols--3"><div class="tcb-flex-col"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input" data-css="tve-u-145b01867cd41fa">
+<input type="text" data-field="name" name="name" placeholder="First Name" data-placeholder="First Name" style="" data-required="0" data-validation="" class="">
+</div></div></div><div class="tcb-flex-col"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input" data-css="tve-u-155b01867cd4243">
+<input type="email" data-field="email" data-required="1" data-validation="email" name="email" placeholder="Email" data-placeholder="Email" class="">
+</div></div></div><div class="tcb-flex-col"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_submit_container tve_lg_submit" data-css="tve-u-165b01867cd4284">
+<button type="submit" class="tve-froala" style="">Send My Download</button>
+</div></div></div></div></div><div class="tve_lg_input_container tve_clearfix tve_lg_checkbox tcb-lg-consent" style="display: none;"><div class="tve_lg_checkbox_wrapper"><input type="checkbox" name="user_consent" value="1" id="tcb-consent-tve-u-1636eb14b58"><label for="tcb-consent-tve-u-1636eb14b58"><span class="thrv-inline-text">Insert details about how the information is going to be processed</span></label></div><input type="hidden" name="consent_config" class="consent-config" value="YTozOntzOjc6ImVuYWJsZWQiO2I6MDtzOjg6InJlcXVpcmVkIjtiOjE7czoxMToiYWx3YXlzX3NlbmQiO2E6MDp7fX0="></div>
+</div>
+<input id="_submit_option" type="hidden" name="_submit_option" value="message"><input id="__tcb_lg_msg" type="hidden" name="__tcb_lg_msg" value="YToyOntzOjU6ImVycm9yIjtzOjY6IkVycm9yISI7czo3OiJzdWNjZXNzIjtzOjc0OiJFdXJla2EhIFBsZWFzZSBjaGVjayB5b3VyIGVtYWlsIGluIGEgY291cGxlIG1pbnV0ZXMgZm9yIHRoZSBkb3dubG9hZCBsaW5rLiI7fQ=="><input type="hidden" name="__tcb_lg_fc" id="__tcb_lg_fc" value="YToxOntzOjQ6ImRyaXAiO3M6OToiNjcwOTg0NDI3Ijt9"><input type="hidden" id="drip_type" class="tve-api-extra" name="drip_type" value="list"><input type="hidden" id="drip_first_name_field" class="tve-api-extra" name="drip_first_name_field" value="thrive_first_name"><input type="hidden" id="drip_last_name_field" class="tve-api-extra" name="drip_last_name_field" value="thrive_last_name"><input type="hidden" id="drip_optin" class="tve-api-extra" name="drip_optin" value="d"></form>
+</div>
+</div></div>
+</div></div></div></div></div></div></div>
+<h4>Intuition: Disease&nbsp;Screening Example</h4>
+<p>Let’s say your client is a&nbsp;leading research hospital, and they’ve asked you to train a model for&nbsp;detecting a disease based on biological inputs collected from patients.</p>
+<p>But here’s the catch… the disease&nbsp;is relatively rare; it occurs in only 8% of patients who are screened.</p>
+<p>Now, before&nbsp;you even start, do you see how the problem might break? Imagine if you didn’t bother training a model at all. Instead, what&nbsp;if you just wrote a single line of code that always predicts ‘No Disease?’</p>
+		<div id="crayon-5c07c61037577767828944" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">A crappy, but accurate, solution</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c61037577767828944-1">1</div><div class="crayon-num" data-line="crayon-5c07c61037577767828944-2">2</div><div class="crayon-num" data-line="crayon-5c07c61037577767828944-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c61037577767828944-1"><span class="crayon-r">def</span><span class="crayon-h"> </span><span class="crayon-e">disease_screen</span><span class="crayon-sy">(</span><span class="crayon-v">patient_data</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5c07c61037577767828944-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c"># Ignore patient_data</span></div><div class="crayon-line" id="crayon-5c07c61037577767828944-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-s">'No Disease.'</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Well, guess what? Your “solution” would have 92% accuracy!</p>
+<p>Unfortunately, that accuracy is misleading.</p>
+<ul>
+<li>For patients who <em>do not</em> have the disease, you’d have 100% accuracy.</li>
+<li>For patients who&nbsp;<em>do</em> have the disease, you’d have 0% accuracy.</li>
+<li>Your overall accuracy would be&nbsp;high simply because most patients do not have the disease (not because your model is any good).</li>
+</ul>
+<p>This is clearly a problem because many machine learning algorithms are designed&nbsp;to maximize overall accuracy. The rest of this guide will illustrate&nbsp;different tactics for handling&nbsp;imbalanced classes.</p>
+<h4>Important notes before we begin:</h4>
+<p>First, please note that we’re not going to split out a separate test set, tune hyperparameters, or implement cross-validation. In other words, we’re not going to follow best practices (which are covered in our <a href="http://elitedatascience.com/primer">Data Science Primer</a>).</p>
+<p>Instead, this tutorial is focused purely on addressing&nbsp;imbalanced classes.</p>
+<p>In addition, not every technique below will work for every problem. However,&nbsp;9 times out of 10, at least one of these techniques should&nbsp;do the trick.</p>
+<h2>Balance Scale Dataset</h2>
+<p>For&nbsp;this guide, we’ll use a synthetic dataset called Balance Scale Data, which you can download from the UCI Machine Learning Repository&nbsp;<a href="http://archive.ics.uci.edu/ml/datasets/balance+scale" target="_blank" rel="noopener noreferrer">here</a>.</p>
+<p>This dataset was originally generated to model psychological experiment results, but it’s useful for us because it’s a manageable size and has imbalanced classes.</p>
+		<div id="crayon-5c07c61037583914415123" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Import libraries and read dataset</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c61037583914415123-1">1</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-2">2</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-3">3</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-4">4</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-5">5</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-6">6</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-7">7</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-8">8</div><div class="crayon-num" data-line="crayon-5c07c61037583914415123-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c61037583914415123-1"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">pandas </span><span class="crayon-st">as</span><span class="crayon-h"> </span><span class="crayon-e">pd</span></div><div class="crayon-line" id="crayon-5c07c61037583914415123-2"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">numpy </span><span class="crayon-st">as</span><span class="crayon-h"> </span><span class="crayon-v">np</span></div><div class="crayon-line" id="crayon-5c07c61037583914415123-3">&nbsp;</div><div class="crayon-line" id="crayon-5c07c61037583914415123-4"><span class="crayon-c"># Read dataset</span></div><div class="crayon-line" id="crayon-5c07c61037583914415123-5"><span class="crayon-v">df</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_csv</span><span class="crayon-sy">(</span><span class="crayon-s">'balance-scale.data'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c61037583914415123-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">names</span><span class="crayon-o">=</span><span class="crayon-sy">[</span><span class="crayon-s">'balance'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'var1'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'var2'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'var3'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'var4'</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c61037583914415123-7">&nbsp;</div><div class="crayon-line" id="crayon-5c07c61037583914415123-8"><span class="crayon-c"># Display example observations</span></div><div class="crayon-line" id="crayon-5c07c61037583914415123-9"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">head</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p><div class="image-caption" style="width:240px;margin-top:0px;margin-bottom:px;margin-right:auto;margin-left:auto;"><img alt="Balance Scale Dataset" src="./How to Handle Imbalanced Classes in Machine Learning_files/balance-scale-dataset-head.png" border="0" class="full-width"></div>
+            <p></p>
+<p>The dataset contains information&nbsp;about whether a scale is balanced or not, based on weights and distances&nbsp;of the two arms.</p>
+<ul>
+<li>It has 1 target variable, which we've labeled 
+			<span id="crayon-5c07c61037586375420092" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">balance</span></span></span>&nbsp;.</li>
+<li>It has&nbsp;4 input features, which we've labeled 
+			<span id="crayon-5c07c61037588547017687" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">var1</span></span></span>&nbsp; through 
+			<span id="crayon-5c07c6103758a847537930" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">var4</span></span></span>&nbsp;.</li>
+</ul>
+
+                <div class="image-caption" style="width:480px;margin-top:0px;margin-bottom:0px;margin-right:auto;margin-left:auto;"><img alt="Image Scale Data" src="./How to Handle Imbalanced Classes in Machine Learning_files/balance-scale-data.png" border="0" class="full-width"></div>
+            
+<p>The&nbsp;target variable has 3 classes.</p>
+<ul>
+<li><strong>R</strong> for right-heavy, i.e.&nbsp;when 
+			<span id="crayon-5c07c6103758d682196392" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">var3</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-v">var4</span><span class="crayon-h"> </span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-v">var1</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-v">var2</span></span></span></li>
+<li><strong>L</strong> for left-heavy, i.e. when 
+			<span id="crayon-5c07c6103758f960582898" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">var3</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-v">var4</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-h"> </span><span class="crayon-v">var1</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-v">var2</span></span></span></li>
+<li><strong>B</strong> for balanced, i.e.&nbsp;when 
+			<span id="crayon-5c07c61037591891230515" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">var3</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-v">var4</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">var1</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-v">var2</span></span></span></li>
+</ul>
+<p></p>
+		<div id="crayon-5c07c61037593270849723" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Count of each class</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c61037593270849723-1">1</div><div class="crayon-num" data-line="crayon-5c07c61037593270849723-2">2</div><div class="crayon-num" data-line="crayon-5c07c61037593270849723-3">3</div><div class="crayon-num" data-line="crayon-5c07c61037593270849723-4">4</div><div class="crayon-num" data-line="crayon-5c07c61037593270849723-5">5</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c61037593270849723-1"><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-s">'balance'</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">value_counts</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c61037593270849723-2"><span class="crayon-c"># R&nbsp;&nbsp;&nbsp;&nbsp;288</span></div><div class="crayon-line" id="crayon-5c07c61037593270849723-3"><span class="crayon-c"># L&nbsp;&nbsp;&nbsp;&nbsp;288</span></div><div class="crayon-line" id="crayon-5c07c61037593270849723-4"><span class="crayon-c"># B&nbsp;&nbsp;&nbsp;&nbsp; 49</span></div><div class="crayon-line" id="crayon-5c07c61037593270849723-5"><span class="crayon-c"># Name: balance, dtype: int64</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>However, for this tutorial, we're going to turn this into a <strong>binary classification</strong> problem.</p>
+<p>We're going to label each observation as&nbsp;<strong>1</strong> (positive class) if the scale is balanced or&nbsp;<strong>0</strong> (negative class) if the scale is not balanced:</p>
+		<div id="crayon-5c07c61037595163788521" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Transform into binary classification</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c61037595163788521-1">1</div><div class="crayon-num" data-line="crayon-5c07c61037595163788521-2">2</div><div class="crayon-num" data-line="crayon-5c07c61037595163788521-3">3</div><div class="crayon-num" data-line="crayon-5c07c61037595163788521-4">4</div><div class="crayon-num" data-line="crayon-5c07c61037595163788521-5">5</div><div class="crayon-num" data-line="crayon-5c07c61037595163788521-6">6</div><div class="crayon-num" data-line="crayon-5c07c61037595163788521-7">7</div><div class="crayon-num" data-line="crayon-5c07c61037595163788521-8">8</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c61037595163788521-1"><span class="crayon-c"># Transform into binary classification</span></div><div class="crayon-line" id="crayon-5c07c61037595163788521-2"><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-s">'balance'</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-h"> </span><span class="crayon-st">if</span><span class="crayon-h"> </span><span class="crayon-v">b</span><span class="crayon-o">==</span><span class="crayon-s">'B'</span><span class="crayon-h"> </span><span class="crayon-st">else</span><span class="crayon-h"> </span><span class="crayon-cn">0</span><span class="crayon-h"> </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-i">b</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">balance</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c61037595163788521-3">&nbsp;</div><div class="crayon-line" id="crayon-5c07c61037595163788521-4"><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-s">'balance'</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">value_counts</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c61037595163788521-5"><span class="crayon-c"># 0&nbsp;&nbsp;&nbsp;&nbsp;576</span></div><div class="crayon-line" id="crayon-5c07c61037595163788521-6"><span class="crayon-c"># 1&nbsp;&nbsp;&nbsp;&nbsp; 49</span></div><div class="crayon-line" id="crayon-5c07c61037595163788521-7"><span class="crayon-c"># Name: balance, dtype: int64</span></div><div class="crayon-line" id="crayon-5c07c61037595163788521-8"><span class="crayon-c"># About 8% were balanced</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>As you can see, only about 8% of the observations were balanced. Therefore, if we were to always predict&nbsp;<strong>0</strong>, we'd achieve an accuracy of 92%.</p>
+<h2>The Danger of Imbalanced Classes</h2>
+<p>Now that we have a dataset, we can really show the dangers of imbalanced classes.</p>
+<p>First, let's import the Logistic Regression algorithm and the accuracy metric from <a href="http://scikit-learn.org/stable/" target="_blank" rel="noopener noreferrer">Scikit-Learn</a>.</p>
+		<div id="crayon-5c07c61037596333925993" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Import algorithm and accuracy metric</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c61037596333925993-1">1</div><div class="crayon-num" data-line="crayon-5c07c61037596333925993-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c61037596333925993-1"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">linear_model </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">LogisticRegression</span></div><div class="crayon-line" id="crayon-5c07c61037596333925993-2"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">metrics </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-v">accuracy_score</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Next,&nbsp;we'll fit a very simple model using default settings for everything.</p>
+		<div id="crayon-5c07c61037597448272754" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Train model on imbalanced data</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c61037597448272754-1">1</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-2">2</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-3">3</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-4">4</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-5">5</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-6">6</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-7">7</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-8">8</div><div class="crayon-num" data-line="crayon-5c07c61037597448272754-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c61037597448272754-1"><span class="crayon-c"># Separate input features (X) and target variable (y)</span></div><div class="crayon-line" id="crayon-5c07c61037597448272754-2"><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-i">balance</span></div><div class="crayon-line" id="crayon-5c07c61037597448272754-3"><span class="crayon-v">X</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">drop</span><span class="crayon-sy">(</span><span class="crayon-s">'balance'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c61037597448272754-4">&nbsp;</div><div class="crayon-line" id="crayon-5c07c61037597448272754-5"><span class="crayon-c"># Train model</span></div><div class="crayon-line" id="crayon-5c07c61037597448272754-6"><span class="crayon-v">clf_0</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">LogisticRegression</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">fit</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c61037597448272754-7">&nbsp;</div><div class="crayon-line" id="crayon-5c07c61037597448272754-8"><span class="crayon-c"># Predict on training set</span></div><div class="crayon-line" id="crayon-5c07c61037597448272754-9"><span class="crayon-v">pred_y_0</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_0</span><span class="crayon-sy">.</span><span class="crayon-e">predict</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>As mentioned above, many machine learning algorithms are designed&nbsp;to maximize overall accuracy by default.</p>
+<p>We can confirm this:</p>
+		<div id="crayon-5c07c61037599333043371" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c61037599333043371-1">1</div><div class="crayon-num" data-line="crayon-5c07c61037599333043371-2">2</div><div class="crayon-num" data-line="crayon-5c07c61037599333043371-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c61037599333043371-1"><span class="crayon-c"># How's the accuracy?</span></div><div class="crayon-line" id="crayon-5c07c61037599333043371-2"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">accuracy_score</span><span class="crayon-sy">(</span><span class="crayon-v">pred_y_0</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c61037599333043371-3"><span class="crayon-c"># 0.9216</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>So our model has 92% overall accuracy, but is it because it's predicting only 1 class?</p>
+		<div id="crayon-5c07c6103759a602825832" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c6103759a602825832-1">1</div><div class="crayon-num" data-line="crayon-5c07c6103759a602825832-2">2</div><div class="crayon-num" data-line="crayon-5c07c6103759a602825832-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c6103759a602825832-1"><span class="crayon-c"># Should we be excited?</span></div><div class="crayon-line" id="crayon-5c07c6103759a602825832-2"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">unique</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">pred_y</span><span class="crayon-sy">_</span>0<span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759a602825832-3"><span class="crayon-c"># [0]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>As you can see, this&nbsp;model is only predicting&nbsp;<strong>0</strong>, which means it's completely ignoring the minority class in favor of the majority class.</p>
+<p>Next, we'll look at the first technique for&nbsp;handling imbalanced classes: up-sampling the minority class.</p>
+<h2>1. Up-sample Minority Class</h2>
+<p>Up-sampling is&nbsp;the process of randomly duplicating observations from the minority class in order to reinforce its&nbsp;signal.</p>
+<p>There are several heuristics for doing so, but the most common way is to simply resample with replacement.</p>
+<p>First, we'll import the resampling module from Scikit-Learn:</p>
+		<div id="crayon-5c07c6103759b603797430" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Module for resampling</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c6103759b603797430-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c6103759b603797430-1"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">utils </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-v">resample</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Next, we'll create a new DataFrame with an up-sampled minority class. Here are the steps:</p>
+<ol>
+<li>First, we'll separate observations from each&nbsp;class into different DataFrames.</li>
+<li>Next, we'll resample the minority class <strong>with replacement</strong>, setting the number of samples to match that of&nbsp;the majority class.</li>
+<li>Finally, we'll combine the up-sampled minority class DataFrame with the original majority class DataFrame.</li>
+</ol>
+<p>Here's the code:</p>
+		<div id="crayon-5c07c6103759c008582986" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Upsample minority class</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-1">1</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-2">2</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-3">3</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-4">4</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-5">5</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-6">6</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-7">7</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-8">8</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-9">9</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-10">10</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-11">11</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-12">12</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-13">13</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-14">14</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-15">15</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-16">16</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-17">17</div><div class="crayon-num" data-line="crayon-5c07c6103759c008582986-18">18</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c6103759c008582986-1"><span class="crayon-c"># Separate majority and minority classes</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-2"><span class="crayon-v">df_majority</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">balance</span><span class="crayon-o">==</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-3"><span class="crayon-v">df_minority</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">balance</span><span class="crayon-o">==</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-4">&nbsp;</div><div class="crayon-line" id="crayon-5c07c6103759c008582986-5"><span class="crayon-c"># Upsample minority class</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-6"><span class="crayon-v">df_minority_upsampled</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">resample</span><span class="crayon-sy">(</span><span class="crayon-v">df_minority</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">replace</span><span class="crayon-o">=</span><span class="crayon-t">True</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-c"># sample with replacement</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">n_samples</span><span class="crayon-o">=</span><span class="crayon-cn">576</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c"># to match majority class</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">random_state</span><span class="crayon-o">=</span><span class="crayon-cn">123</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># reproducible results</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-10">&nbsp;</div><div class="crayon-line" id="crayon-5c07c6103759c008582986-11"><span class="crayon-c"># Combine majority class with upsampled minority class</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-12"><span class="crayon-v">df_upsampled</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">concat</span><span class="crayon-sy">(</span><span class="crayon-sy">[</span><span class="crayon-v">df_majority</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">df_minority_upsampled</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-13">&nbsp;</div><div class="crayon-line" id="crayon-5c07c6103759c008582986-14"><span class="crayon-c"># Display new class counts</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-15"><span class="crayon-v">df_upsampled</span><span class="crayon-sy">.</span><span class="crayon-v">balance</span><span class="crayon-sy">.</span><span class="crayon-e">value_counts</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-16"><span class="crayon-c"># 1&nbsp;&nbsp;&nbsp;&nbsp;576</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-17"><span class="crayon-c"># 0&nbsp;&nbsp;&nbsp;&nbsp;576</span></div><div class="crayon-line" id="crayon-5c07c6103759c008582986-18"><span class="crayon-c"># Name: balance, dtype: int64</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>As you can see, the new DataFrame has more observations than the original, and the ratio of the two classes is now 1:1.</p>
+<p>Let's train another model using Logistic Regression, this time on the balanced dataset:</p>
+		<div id="crayon-5c07c6103759e521022714" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Train model on upsampled dataset</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-1">1</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-2">2</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-3">3</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-4">4</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-5">5</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-6">6</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-7">7</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-8">8</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-9">9</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-10">10</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-11">11</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-12">12</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-13">13</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-14">14</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-15">15</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-16">16</div><div class="crayon-num" data-line="crayon-5c07c6103759e521022714-17">17</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c6103759e521022714-1"><span class="crayon-c"># Separate input features (X) and target variable (y)</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-2"><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df_upsampled</span><span class="crayon-sy">.</span><span class="crayon-i">balance</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-3"><span class="crayon-v">X</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df_upsampled</span><span class="crayon-sy">.</span><span class="crayon-e">drop</span><span class="crayon-sy">(</span><span class="crayon-s">'balance'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-4">&nbsp;</div><div class="crayon-line" id="crayon-5c07c6103759e521022714-5"><span class="crayon-c"># Train model</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-6"><span class="crayon-v">clf_1</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">LogisticRegression</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">fit</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-7">&nbsp;</div><div class="crayon-line" id="crayon-5c07c6103759e521022714-8"><span class="crayon-c"># Predict on training set</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-9"><span class="crayon-v">pred_y_1</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_1</span><span class="crayon-sy">.</span><span class="crayon-e">predict</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-10">&nbsp;</div><div class="crayon-line" id="crayon-5c07c6103759e521022714-11"><span class="crayon-c"># Is our model still predicting just one class?</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-12"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">unique</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">pred_y</span><span class="crayon-sy">_</span>1<span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-13"><span class="crayon-c"># [0 1]</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-14">&nbsp;</div><div class="crayon-line" id="crayon-5c07c6103759e521022714-15"><span class="crayon-c"># How's our accuracy?</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-16"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">accuracy_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">pred_y_1</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c6103759e521022714-17"><span class="crayon-c"># 0.513888888889</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Great, now the model is no longer predicting just one class. While&nbsp;the accuracy also took a nosedive, it's now more meaningful as a performance metric.</p>
+<h2>2. Down-sample Majority Class</h2>
+<p>Down-sampling involves randomly removing observations from the majority class to prevent&nbsp;its signal from dominating the learning algorithm.</p>
+<p>The most common heuristic for doing so is resampling without replacement.</p>
+<p>The process is similar to that of up-sampling. Here are the steps:</p>
+<ol>
+<li>First, we'll separate observations from each class into different DataFrames.</li>
+<li>Next, we'll resample the majority&nbsp;class <strong>without replacement</strong>, setting the number of samples to match that&nbsp;of the minority&nbsp;class.</li>
+<li>Finally, we'll combine the down-sampled majority&nbsp;class DataFrame with the original minority&nbsp;class DataFrame.</li>
+</ol>
+<p>Here's the code:</p>
+		<div id="crayon-5c07c610375a0298814657" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Downsample majority class</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-1">1</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-2">2</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-3">3</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-4">4</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-5">5</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-6">6</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-7">7</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-8">8</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-9">9</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-10">10</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-11">11</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-12">12</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-13">13</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-14">14</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-15">15</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-16">16</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-17">17</div><div class="crayon-num" data-line="crayon-5c07c610375a0298814657-18">18</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375a0298814657-1"><span class="crayon-c"># Separate majority and minority classes</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-2"><span class="crayon-v">df_majority</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">balance</span><span class="crayon-o">==</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-3"><span class="crayon-v">df_minority</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">balance</span><span class="crayon-o">==</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-4">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a0298814657-5"><span class="crayon-c"># Downsample majority class</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-6"><span class="crayon-v">df_majority_downsampled</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">resample</span><span class="crayon-sy">(</span><span class="crayon-v">df_majority</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">replace</span><span class="crayon-o">=</span><span class="crayon-t">False</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-c"># sample without replacement</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">n_samples</span><span class="crayon-o">=</span><span class="crayon-cn">49</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-c"># to match minority class</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-v">random_state</span><span class="crayon-o">=</span><span class="crayon-cn">123</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># reproducible results</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-10">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a0298814657-11"><span class="crayon-c"># Combine minority class with downsampled majority class</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-12"><span class="crayon-v">df_downsampled</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">concat</span><span class="crayon-sy">(</span><span class="crayon-sy">[</span><span class="crayon-v">df_majority_downsampled</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">df_minority</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-13">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a0298814657-14"><span class="crayon-c"># Display new class counts</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-15"><span class="crayon-v">df_downsampled</span><span class="crayon-sy">.</span><span class="crayon-v">balance</span><span class="crayon-sy">.</span><span class="crayon-e">value_counts</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-16"><span class="crayon-c"># 1&nbsp;&nbsp;&nbsp;&nbsp;49</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-17"><span class="crayon-c"># 0&nbsp;&nbsp;&nbsp;&nbsp;49</span></div><div class="crayon-line" id="crayon-5c07c610375a0298814657-18"><span class="crayon-c"># Name: balance, dtype: int64</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>This time, the new DataFrame has fewer&nbsp;observations than the original, and the ratio of the two classes is now 1:1.</p>
+<p>Again, let's train a model using Logistic Regression:</p>
+		<div id="crayon-5c07c610375a1811167934" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Train model on downsampled dataset</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-1">1</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-2">2</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-3">3</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-4">4</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-5">5</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-6">6</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-7">7</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-8">8</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-9">9</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-10">10</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-11">11</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-12">12</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-13">13</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-14">14</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-15">15</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-16">16</div><div class="crayon-num" data-line="crayon-5c07c610375a1811167934-17">17</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375a1811167934-1"><span class="crayon-c"># Separate input features (X) and target variable (y)</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-2"><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df_downsampled</span><span class="crayon-sy">.</span><span class="crayon-i">balance</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-3"><span class="crayon-v">X</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df_downsampled</span><span class="crayon-sy">.</span><span class="crayon-e">drop</span><span class="crayon-sy">(</span><span class="crayon-s">'balance'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-4">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a1811167934-5"><span class="crayon-c"># Train model</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-6"><span class="crayon-v">clf_2</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">LogisticRegression</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">fit</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-7">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a1811167934-8"><span class="crayon-c"># Predict on training set</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-9"><span class="crayon-v">pred_y_2</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_2</span><span class="crayon-sy">.</span><span class="crayon-e">predict</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-10">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a1811167934-11"><span class="crayon-c"># Is our model still predicting just one class?</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-12"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">unique</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">pred_y</span><span class="crayon-sy">_</span>2<span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-13"><span class="crayon-c"># [0 1]</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-14">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a1811167934-15"><span class="crayon-c"># How's our accuracy?</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-16"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">accuracy_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">pred_y_2</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a1811167934-17"><span class="crayon-c"># 0.581632653061</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>The model isn't&nbsp;predicting just one class, and the accuracy seems higher.</p>
+<p>We'd still want to validate the model on an unseen test dataset, but the results are more encouraging.</p>
+<h2>3. Change Your Performance Metric</h2>
+<p>So far, we've looked at two ways&nbsp;of addressing imbalanced classes by resampling the dataset. Next, we'll look at using other performance metrics for evaluating the models.</p>
+<p>Albert Einstein once said, "if you judge a fish on its ability to climb a tree, it will live its whole life believing that it is stupid." This quote really highlights the importance of&nbsp;choosing the right evaluation metric.</p>
+<p>For a general-purpose metric for classification, we recommend&nbsp;<strong>Area Under ROC Curve</strong> (AUROC).</p>
+<ul>
+<li>We won't dive into its&nbsp;details in this guide, but you can read more about it <a href="https://stats.stackexchange.com/questions/132777/what-does-auc-stand-for-and-what-is-it" target="_blank" rel="noopener noreferrer">here</a>.</li>
+<li>Intuitively, AUROC represents the likelihood of your model distinguishing observations from two classes.</li>
+<li>In other words, if you randomly select one observation from each class, what's the probability that your model will&nbsp;be able to "rank" them correctly?</li>
+</ul>
+<p>We can import this metric from Scikit-Learn:</p>
+		<div id="crayon-5c07c610375a3671909276" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Area Under ROC Curve</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375a3671909276-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375a3671909276-1"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">metrics </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-v">roc_auc_score</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>To calculate AUROC, you'll need predicted class probabilities instead of just the predicted classes. You can get them using the 
+			<span id="crayon-5c07c610375a4161007713" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-sy">.</span><span class="crayon-e">predict_proba</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></span></span>&nbsp;<strong>&nbsp;</strong>function like so:</p>
+		<div id="crayon-5c07c610375a6391266548" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Get class probabilities</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-1">1</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-2">2</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-3">3</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-4">4</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-5">5</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-6">6</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-7">7</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-8">8</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-9">9</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-10">10</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-11">11</div><div class="crayon-num" data-line="crayon-5c07c610375a6391266548-12">12</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375a6391266548-1"><span class="crayon-c"># Predict class probabilities</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-2"><span class="crayon-v">prob_y_2</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_2</span><span class="crayon-sy">.</span><span class="crayon-e">predict_proba</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-3">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a6391266548-4"><span class="crayon-c"># Keep only the positive class</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-5"><span class="crayon-v">prob_y_2</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-v">p</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_2</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-6">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375a6391266548-7"><span class="crayon-v">prob_y_2</span><span class="crayon-sy">[</span><span class="crayon-o">:</span><span class="crayon-cn">5</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Example</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-8"><span class="crayon-c"># [0.45419197226479618,</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-9"><span class="crayon-c">#&nbsp;&nbsp;0.48205962213283882,</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-10"><span class="crayon-c">#&nbsp;&nbsp;0.46862327066392456,</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-11"><span class="crayon-c">#&nbsp;&nbsp;0.47868378832689096,</span></div><div class="crayon-line" id="crayon-5c07c610375a6391266548-12"><span class="crayon-c">#&nbsp;&nbsp;0.58143856820159667]</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>So how did this&nbsp;model (trained on the down-sampled dataset) do in terms of AUROC?</p>
+		<div id="crayon-5c07c610375a8021618376" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">AUROC of model trained on downsampled dataset</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375a8021618376-1">1</div><div class="crayon-num" data-line="crayon-5c07c610375a8021618376-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375a8021618376-1"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">roc_auc_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_2</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375a8021618376-2"><span class="crayon-c"># 0.568096626406</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Ok... and how does this compare to the original model trained on the imbalanced dataset?</p>
+		<div id="crayon-5c07c610375aa468213844" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">AUROC of model trained on imbalanced dataset</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375aa468213844-1">1</div><div class="crayon-num" data-line="crayon-5c07c610375aa468213844-2">2</div><div class="crayon-num" data-line="crayon-5c07c610375aa468213844-3">3</div><div class="crayon-num" data-line="crayon-5c07c610375aa468213844-4">4</div><div class="crayon-num" data-line="crayon-5c07c610375aa468213844-5">5</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375aa468213844-1"><span class="crayon-v">prob_y_0</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_0</span><span class="crayon-sy">.</span><span class="crayon-e">predict_proba</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375aa468213844-2"><span class="crayon-v">prob_y_0</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-v">p</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_0</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c610375aa468213844-3">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375aa468213844-4"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">roc_auc_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_0</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375aa468213844-5"><span class="crayon-c"># 0.530718537415</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Remember, our original&nbsp;model trained on the imbalanced dataset had an accuracy of 92%, which is much higher than the 58% accuracy of the model trained on the down-sampled dataset.</p>
+<p>However, the latter model&nbsp;has an AUROC of 57%, which is higher than the 53% of the original&nbsp;model (but not by much).</p>
+<p><strong>Note:</strong> if you got an AUROC of 0.47, it just means you need to invert the predictions because Scikit-Learn is misinterpreting the positive class. AUROC should be &gt;= 0.5.</p>
+<h2>4. Penalize Algorithms (Cost-Sensitive Training)</h2>
+<p>The next tactic is to use penalized learning algorithms that increase the cost of classification mistakes on the minority class.</p>
+<p>A&nbsp;popular algorithm for this technique is Penalized-SVM:</p>
+		<div id="crayon-5c07c610375ab094253748" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Support Vector Machine</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375ab094253748-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375ab094253748-1"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">svm </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-v">SVC</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>During training, we can use the argument 
+			<span id="crayon-5c07c610375ac596350784" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">class_weight</span><span class="crayon-o">=</span><span class="crayon-s">'balanced'</span></span></span>&nbsp; to penalize mistakes on the minority class by an amount proportional to how under-represented it is.</p>
+<p>We also want to include the argument 
+			<span id="crayon-5c07c610375ae457326803" class="crayon-syntax crayon-syntax-inline  crayon-theme-classic crayon-theme-classic-inline crayon-font-monaco" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important;"><span class="crayon-pre crayon-code" style="font-size: 13px !important; line-height: 22px !important;font-size: 13px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><span class="crayon-v">probability</span><span class="crayon-o">=</span><span class="crayon-t">True</span></span></span>&nbsp; if we want to enable probability estimates for SVM algorithms.</p>
+<p>Let's train a model using Penalized-SVM on the original imbalanced dataset:</p>
+		<div id="crayon-5c07c610375af364147693" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Train Penalized SVM on imbalanced dataset</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375af364147693-1">1</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-2">2</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-3">3</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-4">4</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-5">5</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-6">6</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-7">7</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-8">8</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-9">9</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-10">10</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-11">11</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-12">12</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-13">13</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-14">14</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-15">15</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-16">16</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-17">17</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-18">18</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-19">19</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-20">20</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-21">21</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-22">22</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-23">23</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-24">24</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-25">25</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-26">26</div><div class="crayon-num" data-line="crayon-5c07c610375af364147693-27">27</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375af364147693-1"><span class="crayon-c"># Separate input features (X) and target variable (y)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-2"><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-i">balance</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-3"><span class="crayon-v">X</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">drop</span><span class="crayon-sy">(</span><span class="crayon-s">'balance'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-4">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375af364147693-5"><span class="crayon-c"># Train model</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-6"><span class="crayon-v">clf_3</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">SVC</span><span class="crayon-sy">(</span><span class="crayon-v">kernel</span><span class="crayon-o">=</span><span class="crayon-s">'linear'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">class_weight</span><span class="crayon-o">=</span><span class="crayon-s">'balanced'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-c"># penalize</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">probability</span><span class="crayon-o">=</span><span class="crayon-t">True</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-9">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375af364147693-10"><span class="crayon-v">clf_3</span><span class="crayon-sy">.</span><span class="crayon-e">fit</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-11">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375af364147693-12"><span class="crayon-c"># Predict on training set</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-13"><span class="crayon-v">pred_y_3</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_3</span><span class="crayon-sy">.</span><span class="crayon-e">predict</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-14">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375af364147693-15"><span class="crayon-c"># Is our model still predicting just one class?</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-16"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">unique</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">pred_y</span><span class="crayon-sy">_</span>3<span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-17"><span class="crayon-c"># [0 1]</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-18">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375af364147693-19"><span class="crayon-c"># How's our accuracy?</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-20"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">accuracy_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">pred_y_3</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-21"><span class="crayon-c"># 0.688</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-22">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375af364147693-23"><span class="crayon-c"># What about AUROC?</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-24"><span class="crayon-v">prob_y_3</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_3</span><span class="crayon-sy">.</span><span class="crayon-e">predict_proba</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-25"><span class="crayon-v">prob_y_3</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-v">p</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_3</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-26"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">roc_auc_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_3</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375af364147693-27"><span class="crayon-c"># 0.5305236678</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Again, our purpose here is only to illustrate this technique. To really determine which of these tactics works best <em>for this problem</em>, you'd want to evaluate the models on a hold-out test set.</p>
+<h2>5. Use Tree-Based Algorithms</h2>
+<p>The final tactic we'll consider is using tree-based algorithms. Decision trees often perform well on imbalanced datasets because their hierarchical structure allows them to learn signals&nbsp;from both classes.</p>
+<p>In modern applied machine learning, tree ensembles (Random Forests, Gradient Boosted Trees, etc.)&nbsp;almost always outperform singular decision trees, so we'll jump right into those:</p>
+		<div id="crayon-5c07c610375b0170719293" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Random Forest</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375b0170719293-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375b0170719293-1"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">ensemble </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-v">RandomForestClassifier</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Now, let's train a model using a Random Forest on the original imbalanced dataset.</p>
+		<div id="crayon-5c07c610375b1540430434" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Train Random Forest on imbalanced dataset</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-1">1</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-2">2</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-3">3</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-4">4</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-5">5</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-6">6</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-7">7</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-8">8</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-9">9</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-10">10</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-11">11</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-12">12</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-13">13</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-14">14</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-15">15</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-16">16</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-17">17</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-18">18</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-19">19</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-20">20</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-21">21</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-22">22</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-23">23</div><div class="crayon-num" data-line="crayon-5c07c610375b1540430434-24">24</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c610375b1540430434-1"><span class="crayon-c"># Separate input features (X) and target variable (y)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-2"><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-i">balance</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-3"><span class="crayon-v">X</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">drop</span><span class="crayon-sy">(</span><span class="crayon-s">'balance'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-4">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375b1540430434-5"><span class="crayon-c"># Train model</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-6"><span class="crayon-v">clf_4</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">RandomForestClassifier</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-7"><span class="crayon-v">clf_4</span><span class="crayon-sy">.</span><span class="crayon-e">fit</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-8">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375b1540430434-9"><span class="crayon-c"># Predict on training set</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-10"><span class="crayon-v">pred_y_4</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_4</span><span class="crayon-sy">.</span><span class="crayon-e">predict</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-11">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375b1540430434-12"><span class="crayon-c"># Is our model still predicting just one class?</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-13"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-e">unique</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-v">pred_y</span><span class="crayon-sy">_</span>4<span class="crayon-h"> </span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-14"><span class="crayon-c"># [0 1]</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-15">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375b1540430434-16"><span class="crayon-c"># How's our accuracy?</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-17"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">accuracy_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">pred_y_4</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-18"><span class="crayon-c"># 0.9744</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-19">&nbsp;</div><div class="crayon-line" id="crayon-5c07c610375b1540430434-20"><span class="crayon-c"># What about AUROC?</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-21"><span class="crayon-v">prob_y_4</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf_4</span><span class="crayon-sy">.</span><span class="crayon-e">predict_proba</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-22"><span class="crayon-v">prob_y_4</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-v">p</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_4</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-23"><span class="crayon-k ">print</span><span class="crayon-sy">(</span><span class="crayon-h"> </span><span class="crayon-e">roc_auc_score</span><span class="crayon-sy">(</span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">prob_y_4</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c610375b1540430434-24"><span class="crayon-c"># 0.999078798186</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p>Wow! 97% accuracy and nearly 100% AUROC? Is this magic?&nbsp;A sleight of hand? Cheating? Too good to be true?</p>
+<p>Well, tree ensembles have become very popular because they perform extremely well on many real-world problems. We certainly recommend them wholeheartedly.</p>
+<p><strong>However:</strong></p>
+<p>While these results&nbsp;are encouraging, the model&nbsp;<em>could</em> be overfit, so you should still&nbsp;evaluate your model on an unseen test set before making the final decision.</p>
+<p><em>Note: your numbers may differ slightly due to the randomness in the algorithm. You can set a random seed for reproducible results.</em></p>
+<h2>Honorable Mentions</h2>
+<p>There were a few tactics that didn't make it into this tutorial:</p>
+<h4>Create Synthetic Samples (Data Augmentation)</h4>
+<p>Creating synthetic samples is a close cousin of up-sampling, and some people might categorize them together. For example, the <a href="https://www.jair.org/media/953/live-953-2037-jair.pdf" target="_blank" rel="noopener noreferrer">SMOTE algorithm</a> is a method of resampling from the minority class while slightly perturbing feature&nbsp;values, thereby creating "new" samples.</p>
+<p>You can find an implementation of SMOTE in the <a href="http://contrib.scikit-learn.org/imbalanced-learn/generated/imblearn.over_sampling.SMOTE.html" target="_blank" rel="noopener noreferrer">imblearn library</a>.</p>
+<p><em>*Update: One of our readers, Marco, brought up a great point about the risks of using SMOTE without proper cross-validation. Check out the comments section for more details or read his <a href="http://www.marcoaltini.com/blog/dealing-with-imbalanced-data-undersampling-oversampling-and-proper-cross-validation">blog post</a> on the topic.</em></p>
+<h4>Combine Minority&nbsp;Classes</h4>
+<p>Combining minority&nbsp;classes of&nbsp;your target variable may be appropriate for some multi-class problems.</p>
+<p>For example, let's say you wished to predict credit card fraud. In your dataset, each method&nbsp;of fraud may&nbsp;be labeled separately, but you might not care about distinguishing them. You could&nbsp;combine them all into a single 'Fraud' class and treat the problem as binary classification.</p>
+<h4>Reframe as Anomaly Detection</h4>
+<p>Anomaly detection, a.k.a.&nbsp;outlier detection, is for&nbsp;<a href="https://en.wikipedia.org/wiki/Anomaly_detection" target="_blank" rel="noopener noreferrer">detecting outliers and rare events</a>. Instead of building a classification model, you'd have a "profile" of a normal observation. If a new observation strays too far from that "normal profile," it would be flagged&nbsp;as an anomaly.</p>
+<h2>Conclusion &amp; Next Steps</h2>
+<p>In this guide, we covered 5 tactics for handling imbalanced classes in&nbsp;machine learning:</p>
+<ol>
+<li>Up-sample the minority class</li>
+<li>Down-sample the majority class</li>
+<li>Change your performance metric</li>
+<li>Penalize algorithms (cost-sensitive training)</li>
+<li>Use tree-based algorithms</li>
+</ol>
+<p>These tactics are subject to the <a href="http://elitedatascience.com/machine-learning-algorithms">No Free Lunch theorem</a>, and you should try several of them and use&nbsp;the results from the test set to decide on the best solution for your&nbsp;problem.</p>
+<p>If you enjoyed this guide, we invite you to check out our <a href="http://elitedatascience.com/primer">Primer on Data Science and&nbsp;Applied ML</a>.</p>
+<span id="tve_leads_end_content" style="display: block; visibility: hidden; border: 1px solid transparent;"></span><div class="tve-leads-post-footer tve-tl-anim tve-leads-track-post_footer-42 tl-anim-instant tve-trigger-hide"><div class="tl-style" id="tve_tcb2_set-032" data-state="42"><style type="text/css" class="tve_custom_style">@import url("//fonts.googleapis.com/css?family=Roboto:300,500,400&subset=latin");@media (min-width: 300px){#tve_editor [data-css="tve-u-155b0186e491dcd"]:hover button { background-color: rgb(96, 96, 96) !important; }#tve_editor [data-css="tve-u-125b0186e491d0e"]:hover input { color: rgb(0, 109, 94); background-color: rgb(224, 224, 224) !important; }[data-css="tve-u-75b0186e491bd2"] { margin-bottom: 10px !important; margin-top: 20px !important; }[data-css="tve-u-25b0186e491a8b"] { padding-top: 0px !important; padding-bottom: 0px !important; }[data-css="tve-u-15b0186e491a47"] { margin-top: 10px !important; margin-bottom: 20px !important; }[data-css="tve-u-105b0186e491c8f"] { margin-top: 0px !important; margin-bottom: 0px !important; }[data-css="tve-u-05b0186e4919ff"] { overflow: hidden; border: none; background-color: rgb(255, 255, 255) !important; border-radius: 0px !important; padding: 20px !important; margin-top: 5px !important; }#tve_editor [data-css="tve-u-155b0186e491dcd"] button { font-size: 18px; line-height: 30px; font-family: Roboto; border-radius: 40px; overflow: hidden; border: none; font-weight: 300; background-color: rgb(51, 51, 51) !important; }#tve_editor [data-css="tve-u-125b0186e491d0e"] input { line-height: 28px; color: rgb(51, 51, 51); font-family: Roboto; font-weight: 300; border: none; border-radius: 40px; overflow: hidden; background-image: none !important; padding: 14px 18px !important; background-color: rgb(233, 233, 233) !important; }[data-css="tve-u-95b0186e491c50"] { line-height: 27px !important; }#tve_editor [data-css="tve-u-95b0186e491c50"] { font-family: Roboto; font-weight: 300; font-size: 18px !important; color: rgb(51, 51, 51) !important; }[data-css="tve-u-85b0186e491c11"] strong { font-weight: 500; }[data-css="tve-u-85b0186e491c11"] { line-height: 40px !important; }#tve_editor [data-css="tve-u-85b0186e491c11"] { font-family: Roboto; font-weight: 300; color: rgb(51, 51, 51) !important; font-size: 32px !important; }[data-css="tve-u-55b0186e491b55"] { max-width: 75%; }[data-css="tve-u-35b0186e491ad7"] { max-width: 25%; }[data-css="tve-u-45b0186e491b16"] { float: none; margin-left: auto; margin-right: auto; width: 130px; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px; margin-top: 0px !important; margin-bottom: 0px !important; }}@media (max-width: 767px){[data-css="tve-u-05b0186e4919ff"] { padding: 14px !important; }[data-css="tve-u-65b0186e491b94"] { text-align: center; }[data-css="tve-u-85b0186e491c11"] { line-height: 1.2em !important; }#tve_editor [data-css="tve-u-85b0186e491c11"] { font-size: 28px !important; }[data-css="tve-u-45b0186e491b16"] { width: 90px; margin-bottom: 10px !important; }}</style><div class="tve-leads-conversion-object" data-tl-type="post_footer"><div class="tve_flt"><div id="tve_editor" class="tve_shortcode_editor"><div class="thrv-leads-form-box tve_no_drag tve_no_icons thrv_wrapper tve_editor_main_content thrv-leads-in-content tve_empty_dropzone" style="" data-css="tve-u-05b0186e4919ff"><div class="thrv_wrapper thrv-columns" style="" data-css="tve-u-15b0186e491a47"><div class="tcb-flex-row tcb-resized tcb--cols--2" data-css="tve-u-25b0186e491a8b"><div class="tcb-flex-col" data-css="tve-u-35b0186e491ad7" style=""><div class="tcb-col tve_empty_dropzone"><div class="thrv_wrapper tve_image_caption" data-css="tve-u-45b0186e491b16" style=""><span class="tve_image_frame" style="width: 100%;"><img class="tve_image wp-image-1764" alt="Imbalanced Classes Cheatsheet" width="240" height="340" title="Imbalanced Classes Cheatsheet" data-id="1764" src="./How to Handle Imbalanced Classes in Machine Learning_files/Imbalanced-Classes-Cheatsheet-Cover.jpg" style="width: 100%;"></span></div></div></div><div class="tcb-flex-col" data-css="tve-u-55b0186e491b55" style=""><div class="tcb-col tve_empty_dropzone" style="" data-css="tve-u-65b0186e491b94"><div class="thrv_wrapper thrv_text_element tve_empty_dropzone on_hover" style="" data-css="tve-u-75b0186e491bd2"><p data-css="tve-u-85b0186e491c11" data-default="Enter your text here..."><strong>Free: Code Cheatsheet</strong></p></div><div class="thrv_wrapper thrv_text_element tve_empty_dropzone" style=""><p data-css="tve-u-95b0186e491c50" data-default="Enter your text here...">You've read the tutorial, but what if you forget some of the syntax? No worries - just download the free <strong>PDF code cheatsheet</strong> for your future reference!</p></div></div></div></div></div><div class="thrv_wrapper thrv_lead_generation" data-connection="api" style="" data-css="tve-u-105b0186e491c8f"><input type="hidden" class="tve-lg-err-msg" value="{&quot;email&quot;:&quot;Email address invalid&quot;,&quot;phone&quot;:&quot;Phone number invalid&quot;,&quot;password&quot;:&quot;Password invalid&quot;,&quot;passwordmismatch&quot;:&quot;Password mismatch error&quot;,&quot;required&quot;:&quot;Required field missing&quot;}">
+<div class="thrv_lead_generation_container tve_clearfix">
+<form action="https://elitedatascience.com/imbalanced-classes#" method="post" novalidate="novalidate">
+<div class="tve_lead_generated_inputs_container tve_clearfix tve_empty_dropzone">
+<div class="thrv_wrapper thrv-columns"><div class="tcb-flex-row tcb--cols--3"><div class="tcb-flex-col" data-css="tve-u-115b0186e491ccf"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input tcb-icon-display tve_empty_dropzone" data-css="tve-u-125b0186e491d0e">
+<input type="text" data-field="name" data-required="1" data-validation="" name="name" placeholder="First Name" data-placeholder="First Name" class="" style="">
+</div></div></div><div class="tcb-flex-col" data-css="tve-u-135b0186e491d4d" style=""><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input tcb-icon-display tve_empty_dropzone" data-css="tve-u-125b0186e491d0e">
+<input type="email" data-field="email" data-required="1" data-validation="email" name="email" placeholder="Email" data-placeholder="Email" class="" style="">
+</div></div></div><div class="tcb-flex-col" data-css="tve-u-145b0186e491d8e" style=""><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_submit_container tve_lg_submit tcb-icon-display tve_empty_dropzone" data-css="tve-u-155b0186e491dcd">
+<button type="submit" class="tve-froala" style="">Send My Download</button>
+</div></div></div></div></div>
+</div>
+<input type="hidden" name="__tcb_lg_fc" id="__tcb_lg_fc" value="YToxOntzOjQ6ImRyaXAiO3M6OToiNjcwOTg0NDI3Ijt9"><input id="_submit_option" type="hidden" name="_submit_option" value="message"><input id="_autofill" type="hidden" name="_autofill" value=""><input id="__tcb_lg_msg" type="hidden" name="__tcb_lg_msg" value="YToyOntzOjU6ImVycm9yIjtzOjY6IkVycm9yISI7czo3OiJzdWNjZXNzIjtzOjc0OiJFdXJla2EhIFBsZWFzZSBjaGVjayB5b3VyIGVtYWlsIGluIGEgY291cGxlIG1pbnV0ZXMgZm9yIHRoZSBkb3dubG9hZCBsaW5rLiI7fQ=="><input type="hidden" id="drip_type" class="tve-api-extra" name="drip_type" value="list"><input type="hidden" id="drip_first_name_field" class="tve-api-extra" name="drip_first_name_field" value="thrive_first_name"><input type="hidden" id="drip_last_name_field" class="tve-api-extra" name="drip_last_name_field" value="thrive_last_name"><input type="hidden" id="drip_optin" class="tve-api-extra" name="drip_optin" value="d"></form>
+</div>
+</div></div></div></div></div></div></div></div><aside class="mashsb-container mashsb-main mashsb-stretched"><div class="mashsb-box"><div class="mashsb-count mash-small" style="float:left;"><div class="counts mashsbcount">1k</div><span class="mashsb-sharetext">SHARES</span></div><div class="mashsb-buttons"><a class="mashicon-facebook mash-small mash-center mashsb-noshadow" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Share</span></a><a class="mashicon-google mash-small mash-center mashsb-noshadow" href="https://plus.google.com/share?text=How+to+Handle+Imbalanced+Classes+in+Machine+Learning&amp;url=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Google</span></a><a class="mashicon-linkedin mash-small mash-center mashsb-noshadow" href="https://www.linkedin.com/shareArticle?trk=How+to+Handle+Imbalanced+Classes+in+Machine+Learning&amp;url=https%3A%2F%2Felitedatascience.com%2Fimbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Linkedin</span></a><a class="mashicon-twitter mash-small mash-center mashsb-noshadow" href="https://twitter.com/intent/tweet?text=How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning&amp;url=https://elitedatascience.com/imbalanced-classes" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Tweet</span></a><div class="onoffswitch2 mash-small mashsb-noshadow" style="display:none;"></div></div>
+            </div>
+                <div style="clear:both;"></div><div class="mashsb-toggle-container"></div></aside>
+            <!-- Share buttons by mashshare.net - Version: 3.5.3--></div>
+
+
+                <aside class="pn-art-wrap">
+                    <hr>
+                    <div class="row">
+                        <a href="https://elitedatascience.com/beginner-mistakes" title="9 Mistakes to Avoid When Starting Your Career in Data Science" class="col-xs-6">
+                            <strong>« Previous Post</strong>
+                            <span class="pna-title">9 Mistakes to Avoid When Starting Your Career in Data Science</span>
+                        </a>
+                        <a href="https://elitedatascience.com/beginner-kaggle" title="The Beginner’s Guide to Kaggle" class="col-xs-6">
+                            <strong>Next Post »</strong>
+                            <span class="pna-title">The Beginner’s Guide to Kaggle</span>
+                        </a>
+                    </div> <!--// .row -->
+                </aside>
+                                            </div>
+                            </div>
+                        </div>
+                                        <div class="op_optin_single_before_footer_container op_optin_style_dark">
+    <div id="op-trigger-op_theme_popup_5c07c6107636b" class="optin-box-optimizetheme-lightbox optin-box-optimizetheme optin-box-optimizetheme-before-footer optin-box-optimizetheme-dark">
+        <div class="container op-container optin-box-content optin-box-optimizetheme-content"><div class="optin-box-optimizetheme-headline-container"><h2 class="optin-box-optimizetheme-headline">Free: Data Science Downloads</h2><p class="optin-box-optimizetheme-subheadline">10+ Bonus Resources for Data Science &amp; Machine Learning</p></div>
+            <div class="optin-box-optimizetheme-open-lightbox-container">
+                <button type="button" class="default-button" data-toggle="modal" data-target="#op_theme_popup_5c07c6107636b">Get instant access!</button>
+            </div>
+        </div></div>
+
+    <div class="optin-box-optimizetheme-modal modal fade" id="op_theme_popup_5c07c6107636b" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <button type="button" class="close optin-box-optimizetheme-close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+            <div class="modal-content">
+                <div class="modal-body">
+                <aside id="op-optin-5c070c529ed90" class="optin-box optin-box-optimizetheme optin-box-optimizetheme-before-footer optin-box-optimizetheme-dark">
+    <div class="container op-container optin-box-content optin-box-optimizetheme-content">
+        
+        <div class="optin-box-optimizetheme-headline-container">
+            <h2 class="optin-box-optimizetheme-headline">EDS Subscriber Vault</h2>            <p class="optin-box-optimizetheme-subheadline">Download free coding cheatsheets, machine learning checklists, PDF worksheets, resource lists, and more...</p>        </div>
+
+        <div class="optin-box-optimizetheme-form-container">
+        <form action="https://www.getdrip.com/forms/297767675/submissions" method="post" class="cf op-optin-validation"><div style="display:none"><input type="hidden" name="redirect_url" value="https://www.getdrip.com/forms/297767675/submissions"><input type="hidden" name="email_field" value="fields[email]"></div>                <div class="text-boxes optin-box-optimizetheme-text-boxes">
+                    <div class="text-box name"><input type="text" required="required" name="fields[first_name]" placeholder="Enter your first name" value=""></div><div class="text-box email"><input type="email" required="required" name="fields[email]" placeholder="Enter your best email" value=""></div>                </div>
+                <button type="submit" class="default-button"><span>Let's Start!</span></button>                            <input type="hidden" id="op_optin_nonce" name="op_optin_nonce" value="7c50327666"><input type="hidden" name="_wp_http_referer" value="/imbalanced-classes"></form>
+        </div>
+        <div class="optin-box-optimizetheme-privacy">No spam. No nonsense.</div>
+            </div>
+    <style>#op-optin-5c070c529ed90 .default-button { color: #FFFFFF; background-color: #276CF2; }#op-optin-5c070c529ed90 .default-button:hover { background-color: #0054cc; }</style>
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div><style>#op-trigger-op_theme_popup_5c07c6107636b .optin-box-optimizetheme-open-lightbox-container .default-button { color: #FFFFFF; background-color: #276CF2; }#op-trigger-op_theme_popup_5c07c6107636b .optin-box-optimizetheme-open-lightbox-container .default-button:hover { background-color: #0054cc; }</style></div>                </div><!-- #primary -->
+            </article>
+
+
+        </main>
+    </div> <!-- #page .hfeed .site -->
+        <footer id="colophon" class="site-footer" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+            <section class="op-footer">
+                <div class="container op-container">
+                    <div class="row">
+                        
+        <div class="col-sm-3">
+            <aside id="nav_menu-4" class="widget widget_nav_menu"><h2 class="widget-title">Links</h2><div class="menu-footer-navigation-links-container"><ul id="menu-footer-navigation-links" class="menu"><li id="menu-item-1598" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1598"><a href="https://elitedatascience.com/start-here">Start Here</a></li>
+<li id="menu-item-1597" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1597"><a href="https://elitedatascience.com/">Homepage</a></li>
+<li id="menu-item-1599" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1599"><a href="https://elitedatascience.com/login">Login</a></li>
+</ul></div></aside>        </div>
+
+        
+        <div class="col-sm-3">
+            <aside id="nav_menu-2" class="widget widget_nav_menu"><h2 class="widget-title">Articles</h2><div class="menu-footer-navigation-articles-container"><ul id="menu-footer-navigation-articles" class="menu"><li id="menu-item-1594" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1594"><a href="https://elitedatascience.com/category/guides">Guides</a></li>
+<li id="menu-item-1590" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1590"><a href="https://elitedatascience.com/category/explainers">Concept Explainers</a></li>
+<li id="menu-item-1593" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1593"><a href="https://elitedatascience.com/category/tutorials">Code Tutorials</a></li>
+<li id="menu-item-1592" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1592"><a href="https://elitedatascience.com/category/career">Career Help</a></li>
+<li id="menu-item-1591" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1591"><a href="https://elitedatascience.com/category/resources">Tools &amp; Resources</a></li>
+</ul></div></aside>        </div>
+
+        
+        <div class="col-sm-3">
+            <aside id="nav_menu-3" class="widget widget_nav_menu"><h2 class="widget-title">Products</h2><div class="menu-footer-navigation-products-container"><ul id="menu-footer-navigation-products" class="menu"><li id="menu-item-1596" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1596"><a href="https://elitedatascience.com/machine-learning-masterclass">Machine Learning Masterclass</a></li>
+<li id="menu-item-1595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1595"><a href="https://elitedatascience.com/interview-prep-kit">Interview Prep Kit</a></li>
+</ul></div></aside>        </div>
+
+        
+        <div class="col-sm-3">
+            <aside id="custom_html-2" class="widget_text widget widget_custom_html"><h2 class="widget-title">Share</h2><div class="textwidget custom-html-widget"><div style="margin-top:-10px">
+<aside class="mashsb-container mashsb-main mashsb-stretched"><div class="mashsb-box"><div class="mashsb-buttons"><a class="mashicon-facebook mash-small mash-center mashsb-noshadow" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Felitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Share</span></a><a class="mashicon-google mash-small mash-center mashsb-noshadow" href="https://plus.google.com/share?text=How+to+Handle+Imbalanced+Classes+in+Machine+Learning&amp;url=https%3A%2F%2Felitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Google</span></a><a class="mashicon-linkedin mash-small mash-center mashsb-noshadow" href="https://www.linkedin.com/shareArticle?trk=How+to+Handle+Imbalanced+Classes+in+Machine+Learning&amp;url=https%3A%2F%2Felitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Linkedin</span></a><a class="mashicon-twitter mash-small mash-center mashsb-noshadow" href="https://twitter.com/intent/tweet?text=How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning&amp;url=https://elitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Tweet</span></a><div class="onoffswitch2 mash-small mashsb-noshadow" style="display:none;"></div></div></div>
+                    <div style="clear:both;"></div><div class="mashsb-toggle-container"></div></aside>
+            <!-- Share buttons made by mashshare.net - Version: 3.5.3-->
+</div>
+</div></aside>        </div>
+
+                            </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                                                    </div>
+                        <div class="col-sm-12 footer-copyright">
+                            <p>Copyright © 2016-2018 · EliteDataScience.com · All Rights Reserved&nbsp;· <a href="https://elitedatascience.com/terms-of-service">Terms</a>&nbsp;· <a href="https://elitedatascience.com/privacy-policy">Privacy</a></p>                                                    </div>
+                    </div>
+                </div>
+            </section>
+            <script type="text/javascript">
+/* <![CDATA[ */
+var TVE_Ult_Data = {"ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","ajax_load_action":"tve_ult_ajax_load","conversion_events_action":"tve_ult_conversion_event","shortcode_campaign_ids":[],"matched_display_settings":[],"campaign_ids":[],"post_id":1182,"is_singular":true,"tu_em":""};
+/* ]]> */
+</script>
+		<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/no-campaign.min.js.download"></script><aside id="mashfs-main" class="mashfs-hide mashfs-left" style="background-color: transparent; margin-left: 0px; margin-right: 0px; top: 164px; display: block;"><span class="mashfs-buttons"><a href="https://www.linkedin.com/shareArticle?trk=How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning&amp;url=https://elitedatascience.com/imbalanced-classes" class="mashicon-linkedin mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="http://www.facebook.com/sharer.php?u=https://elitedatascience.com/imbalanced-classes" class="mashicon-facebook mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://plus.google.com/share?text=How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning&amp;url=https://elitedatascience.com/imbalanced-classes" class="mashicon-google mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://twitter.com/intent/tweet?text=How+to+Handle+Imbalanced+Classes+in+Machine+Learning&amp;url=https://elitedatascience.com/imbalanced-classes" class="mashicon-twitter mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="http://service.weibo.com/share/share.php?url=https://elitedatascience.com/imbalanced-classes&amp;title=How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning" class="mashicon-weibo mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="mailto:?subject=Check%20out%20this%20site%20How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning&amp;body=Check%20out%20this%20site%20https://elitedatascience.com/imbalanced-classes" class="mashicon-mail mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://getpocket.com/save?title=How%20to%20Handle%20Imbalanced%20Classes%20in%20Machine%20Learning&amp;url=https://elitedatascience.com/imbalanced-classes" class="mashicon-pocket mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://elitedatascience.com/imbalanced-classes#" id="mashfs-hidebtn" style="background-color: transparent;color: #5a5a5f;">&lt;&lt;</a></span></aside><!-- Drip -->
+<script type="text/javascript">
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {}; 
+  _dcs.account = '8015924';
+  
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true; 
+    dc.src = '//tag.getdrip.com/8015924.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script><script type="text/javascript">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/elitedatascience.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}},"cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/scripts.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mashsb = {"shares":"1022","round_shares":"1","animate_shares":"0","dynamic_buttons":"0","share_url":"https:\/\/elitedatascience.com\/imbalanced-classes","title":"How+to+Handle+Imbalanced+Classes+in+Machine+Learning","image":"https:\/\/elitedatascience.com\/wp-content\/uploads\/2017\/06\/imbalanced-classes-feature-no-text.jpg","desc":"Imbalanced classes put \"accuracy\" out of business. This is a surprisingly common problem in machine learning (specifically in\u00a0classification), occurring\u00a0in\u00a0datasets with a disproportionate ratio\u00a0of\u00a0observations in each\u00a0class.\r\n\r\nStandard accuracy no longer reliably measures\u00a0performance, which makes model training\u00a0much trickier.\r\n\r\nImbalanced \u2026","hashtag":"","subscribe":"content","subscribe_url":"","activestatus":"1","singular":"1","twitter_popup":"1","refresh":"1","nonce":"512fafb9c1","postid":"1182","servertime":"1544013328","ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/mashsb.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tve_frontend_options = {"is_editor_page":"","page_events":[],"is_single":"1","ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","social_fb_app_id":"","dash_url":"https:\/\/elitedatascience.com\/wp-content\/plugins\/thrive-ultimatum\/thrive-dashboard","translations":{"Copy":"Copy"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/frontend.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/frontend.min.js(1).download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mashnet = {"body":"Check out this article: ","subject":"Check out this site","pinterest_select":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/mashnet.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/core.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/widget.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/accordion.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/opplus-front-all.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/all.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tve_dash_front = {"ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","force_ajax_send":"","is_crawler":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/frontend.min.js(2).download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/q2w3-fixed-widget.min.js.download"></script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/wp-embed.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var OPValidation = {"labels":{"email":"Please enter valid email address","text":"Please fill all fields"},"ajaxUrl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","nonce":"d6affaa0f1"};
+var OPValidation = {"labels":{"email":"Please enter valid email address","text":"Please fill all fields"},"ajaxUrl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","nonce":"d6affaa0f1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./How to Handle Imbalanced Classes in Machine Learning_files/validation.min.js.download"></script>
+<script type="text/javascript">/*<![CDATA[*/if ( !window.TL_Const ) {var TL_Const={"security":"8d582a9cbd","ajax_url":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","forms":[],"action_conversion":"tve_leads_ajax_conversion","action_impression":"tve_leads_ajax_impression","ajax_load":1,"main_group_id":1860,"display_options":{"allowed_post_types":[],"flag_url_match":false},"custom_post_data":{"http_referrer":"https:\/\/www.google.com\/"},"current_screen":{"screen_type":4,"screen_id":1182},"ignored_fields":["email","_captcha_size","_captcha_theme","_captcha_type","_submit_option","_use_captcha","g-recaptcha-response","__tcb_lg_fc","__tcb_lg_msg","_state","_form_type","_error_message_option","_back_url","_submit_option","url","_asset_group","_asset_option","mailchimp_optin"]};} else {ThriveGlobal.$j.extend(true, TL_Const, {"security":"8d582a9cbd","ajax_url":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","forms":[],"action_conversion":"tve_leads_ajax_conversion","action_impression":"tve_leads_ajax_impression","ajax_load":1,"main_group_id":1860,"display_options":{"allowed_post_types":[],"flag_url_match":false},"custom_post_data":{"http_referrer":"https:\/\/www.google.com\/"},"current_screen":{"screen_type":4,"screen_id":1182},"ignored_fields":["email","_captcha_size","_captcha_theme","_captcha_type","_submit_option","_use_captcha","g-recaptcha-response","__tcb_lg_fc","__tcb_lg_msg","_state","_form_type","_error_message_option","_back_url","_submit_option","url","_asset_group","_asset_option","mailchimp_optin"]})} /*]]> */</script>        </footer>
+
+
+
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","469443103391738");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=469443103391738&amp;ev=PageView&amp;noscript=1"></noscript>
+
+<script type="text/javascript">
+	(function ($) {
+	$(function () {
+		var event_data = {"form_id":"tve-leads-track-in_content-41","form_type":"in_content"};
+		event_data.source = 'page_load';
+		setTimeout(function () {
+			ThriveGlobal.$j(TL_Front).trigger('showform.thriveleads', event_data);
+			}, 200);
+		});
+	})
+(ThriveGlobal.$j);
+</script><script type="text/javascript">
+	(function ($) {
+	var _DELTA = 80,
+	event_data = {"form_id":"tve-leads-track-post_footer-42","form_type":"post_footer"},
+	$window = $(window),
+	trigger_elements = function (elem) {
+	if (elem.offset().top + _DELTA < $window.height() + $window.scrollTop() && elem.offset().top + elem.outerHeight() > $window.scrollTop() + _DELTA) {
+	elem.addClass('tve-leads-viewport-triggered');
+	ThriveGlobal.$j(TL_Front).trigger('showform.thriveleads', event_data);
+	}
+	};
+	event_data.source = 'viewport';
+	$(document).ready(function () {
+	var _elem = $('.' + event_data.form_id);
+	if (!_elem.length) {
+	return;
+	}
+
+	$window.scroll(function() {
+	if (!_elem.hasClass('tve-leads-viewport-triggered')) {
+	trigger_elements(_elem);
+	}
+	});
+	trigger_elements(_elem);
+	});
+	})
+(ThriveGlobal.$j);
+</script><link rel="stylesheet" href="./How to Handle Imbalanced Classes in Machine Learning_files/load-styles.php" type="text/css" media="all">
+<link rel="stylesheet" id="wpe-common-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/wpe-common.css" type="text/css" media="all">
+<link rel="stylesheet" id="thickbox-css" href="./How to Handle Imbalanced Classes in Machine Learning_files/thickbox.css" type="text/css" media="all"></body></html>

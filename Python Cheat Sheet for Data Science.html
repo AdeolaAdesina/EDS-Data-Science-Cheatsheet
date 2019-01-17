@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://elitedatascience.com/python-cheat-sheet -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="wf-poppins-n7-active wf-montserrat-n7-active wf-montserrat-n6-active wf-montserrat-n4-active wf-montserrat-n5-active wf-sourcesanspro-n4-active wf-karla-n4-active wf-karla-n7-active wf-karla-i4-active wf-karla-i7-active wf-poppins-n6-active wf-poppins-n5-active wf-poppins-n3-active wf-poppins-n4-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./Python Cheat Sheet for Data Science_files/zxcvbn.min.js.download" type="text/javascript" async=""></script><script src="./Python Cheat Sheet for Data Science_files/469443103391738" async=""></script><script async="" src="./Python Cheat Sheet for Data Science_files/fbevents.js.download"></script><script type="text/javascript" async="" src="./Python Cheat Sheet for Data Science_files/analytics.js.download"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="pingback" href="https://elitedatascience.com/xmlrpc.php">
+
+    <title>Python Cheat Sheet for Data Science</title>
+                        <script type="text/javascript" async="" src="./Python Cheat Sheet for Data Science_files/8015924.js.download"></script><script async="" src="./Python Cheat Sheet for Data Science_files/gtm.js.download"></script><script src="./Python Cheat Sheet for Data Science_files/webfont.js.download" type="text/javascript" async=""></script><script>
+                            /* You can add more configuration options to webfontloader by previously defining the WebFontConfig with your options */
+                            if ( typeof WebFontConfig === "undefined" ) {
+                                WebFontConfig = new Object();
+                            }
+                            WebFontConfig['google'] = {families: ['Poppins:300,400,500,600,700', 'Montserrat:700,600,400,500', 'Source+Sans+Pro:400', 'Karla:400,700,400italic,700italic']};
+
+                            (function() {
+                                var wf = document.createElement( 'script' );
+                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.3/webfont.js';
+                                wf.type = 'text/javascript';
+                                wf.async = 'true';
+                                var s = document.getElementsByTagName( 'script' )[0];
+                                s.parentNode.insertBefore( wf, s );
+                            })();
+                        </script>
+                        
+<!-- This site is optimized with the Yoast SEO plugin v7.5.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="This cheat sheet summarizes some of the most common functionality from Pandas and Scikit-Learn, two of the most useful Python libraries for data science.">
+<link rel="canonical" href="https://elitedatascience.com/python-cheat-sheet">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Cheat Sheet for Data Science">
+<meta property="og:description" content="This cheat sheet summarizes some of the most common functionality from Pandas and Scikit-Learn, two of the most useful Python libraries for data science.">
+<meta property="og:url" content="https://elitedatascience.com/python-cheat-sheet">
+<meta property="og:site_name" content="EliteDataScience">
+<meta property="article:section" content="Resources">
+<meta property="article:published_time" content="2017-11-28T09:21:49-05:00">
+<meta property="article:modified_time" content="2018-05-20T17:52:35-05:00">
+<meta property="og:updated_time" content="2018-05-20T17:52:35-05:00">
+<meta property="og:image" content="https://elitedatascience.com/wp-content/uploads/2017/11/Python-Cheat-Sheet-Feature-Without-Text.jpg">
+<meta property="og:image:secure_url" content="https://elitedatascience.com/wp-content/uploads/2017/11/Python-Cheat-Sheet-Feature-Without-Text.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="628">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="This cheat sheet summarizes some of the most common functionality from Pandas and Scikit-Learn, two of the most useful Python libraries for data science.">
+<meta name="twitter:title" content="Python Cheat Sheet for Data Science">
+<meta name="twitter:image" content="https://elitedatascience.com/wp-content/uploads/2017/11/Python-Cheat-Sheet-Feature-Without-Text.jpg">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="EliteDataScience » Feed" href="https://elitedatascience.com/feed">
+<link rel="alternate" type="application/rss+xml" title="EliteDataScience » Comments Feed" href="https://elitedatascience.com/comments/feed">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TFDKX2');</script>
+<!-- End Google Tag Manager --><link rel="stylesheet" id="crayon-css" href="./Python Cheat Sheet for Data Science_files/crayon.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-theme-classic-css" href="./Python Cheat Sheet for Data Science_files/classic.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="./Python Cheat Sheet for Data Science_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="contact-form-7-css" href="./Python Cheat Sheet for Data Science_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="font-awesome-four-css" href="./Python Cheat Sheet for Data Science_files/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="mashsb-styles-css" href="./Python Cheat Sheet for Data Science_files/mashsb.min.css" type="text/css" media="all">
+<style id="mashsb-styles-inline-css" type="text/css">
+.mashsb-count {color:#cccccc;}@media only screen and (min-width:568px){.mashsb-buttons a {min-width: 177px;}}
+</style>
+<link rel="stylesheet" id="tve_style_family_tve_flt-css" href="./Python Cheat Sheet for Data Science_files/thrive_flat.css" type="text/css" media="all">
+<link rel="stylesheet" id="tve_leads_forms-css" href="./Python Cheat Sheet for Data Science_files/frontend.css" type="text/css" media="all">
+<link rel="stylesheet" id="mashfs-css" href="./Python Cheat Sheet for Data Science_files/mashfs.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="mashnet-styles-css" href="./Python Cheat Sheet for Data Science_files/mashnet.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="op_map_custom-css" href="./Python Cheat Sheet for Data Science_files/op_map.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="opst-css-style-css" href="./Python Cheat Sheet for Data Science_files/all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="woocommerce_responsive_frontend_styles-css" href="./Python Cheat Sheet for Data Science_files/woocommerce.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="optimizepress-default-css" href="./Python Cheat Sheet for Data Science_files/default.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="ws-plugin--optimizemember-css" href="./Python Cheat Sheet for Data Science_files/optimizeMember-o.php" type="text/css" media="all">
+<link rel="stylesheet" id="optimizepressplus-pack-css-front-all-css" href="./Python Cheat Sheet for Data Science_files/opplus-front-all.min.css" type="text/css" media="all">
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/jquery-migrate.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var OptimizePress = {"ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","SN":"optimizepress","version":"2.5.13","script_debug":".min","localStorageEnabled":"","wp_admin_page":"","op_live_editor":"","op_page_builder":"","op_create_new_page":"","imgurl":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/images\/","OP_URL":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/","OP_JS":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/js\/","OP_PAGE_BUILDER_URL":"","include_url":"https:\/\/elitedatascience.com\/wp-includes\/","op_autosave_interval":"300","op_autosave_enabled":"Y","paths":{"url":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/","img":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/images\/","js":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/js\/","css":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/css\/"},"social":{"twitter":"optimizepress","facebook":"optimizepress","googleplus":"111273444733787349971"},"flowplayerHTML5":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/modules\/blog\/video\/flowplayer\/flowplayer.swf","flowplayerKey":"","flowplayerLogo":"","mediaelementplayer":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlugin\/lib\/modules\/blog\/video\/mediaelement\/","pb_unload_alert":"This page is asking you to confirm that you want to leave - data you have entered may not be saved.","pb_save_alert":"Please make sure you are happy with all of your options as some options will not be able to be changed for this page later.","search_default":"Search...","optimizemember":{"enabled":true,"version":"1.2.9"},"OP_LEADS_URL":"https:\/\/my.optimizeleads.com\/","OP_LEADS_THEMES_URL":"https:\/\/my.optimizeleads.com\/build\/themes\/","map":{"gmapsApiKey":""},"oppp":{"version":"1.1.8.2","path":"https:\/\/elitedatascience.com\/wp-content\/plugins\/optimizePressPlusPack\/"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/op-jquery-base-all.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/crayon.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mashfs = {"mobile_width":"568"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/mashfs.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/op-front-all.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _zxcvbnSettings = {"src":"https:\/\/elitedatascience.com\/wp-includes\/js\/zxcvbn.min.js"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/zxcvbn-async.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var pwsL10n = {"unknown":"Password strength unknown","short":"Very weak","bad":"Weak","good":"Medium","strong":"Strong","mismatch":"Mismatch"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/password-strength-meter.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/optimizeMember-o(1).php"></script>
+<link rel="https://api.w.org/" href="https://elitedatascience.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://elitedatascience.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://elitedatascience.com/wp-includes/wlwmanifest.xml"> 
+<link rel="shortlink" href="https://elitedatascience.com/?p=1510">
+<link rel="alternate" type="application/json+oembed" href="https://elitedatascience.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet">
+<link rel="alternate" type="text/xml+oembed" href="https://elitedatascience.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet&amp;format=xml">
+
+        <!--[if (gte IE 6)&(lte IE 8)]>
+            <script type="text/javascript" src="https://elitedatascience.com/wp-content/plugins/optimizePressPlugin/lib/js/selectivizr-1.0.2-min.js?ver=1.0.2"></script>
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <script src="https://elitedatascience.com/wp-content/plugins/optimizePressPlugin/lib/js//html5shiv.min.js"></script>
+        <![endif]-->
+    
+            <style type="text/css" id="op_header_css">
+            
+            </style>
+            
+<style id="op_custom_css">
+.banner { padding: 20px 0; }
+.banner .op-logo { padding: 0; }
+.banner .op-logo img { max-width: 225px; }
+
+body #nav-side.navigation #navigation-alongside  { margin: 0; }
+
+.op-page-header.cf { display: none !important; }
+
+.single-post-content ol li, .single-post-content ul li { margin: 2px 0px 2px 15px; 
+list-style-position: outside;}
+
+.single-post-content ol, .single-post-content ul { margin-left: 10px; }
+
+body.single-post .post-image { display: none; }
+
+.single-post-content ol li:first-child, .single-post-content ul li:first-child { margin-top: 5px; }
+
+.single-post-content h3 { padding-top: 20px; }
+.single-post-content h4 { font-weight: 500; }
+
+.latest-post h1.the-title { font-size: 30px; }
+
+
+.single-post-content .image-text-style-1 .image-text-style-img-container img { box-shadow: 0 0 8px rgba(0,0,0,.33); }
+
+.single-post-content .image-text-style-1 .image-text-align-left { padding-left: 0px; }
+
+.single-post-content .image-text-style-1 .image-text-align-center { padding-left: 0px; }
+
+.single-post-content .image-text-style-1 h3 { font-size: 16px; padding-bottom: 0px; font-weight:bold; }
+
+.single-post-content .image-text-style-1 img { height: auto; }
+
+.image-text-style-1 span { width: 49%; }
+
+@media only screen and (max-width: 767px) {
+.image-text-style-1 span {
+    width: 100%;
+} }
+
+.footer li a { font-weight: 500; }
+
+.older-post h4 a { 
+font-weight: bold;
+font-size: 25px;
+front-family: "Helvetica Neue", Helvetica, sans-serif;
+color: #222;
+}
+</style>
+
+            <meta property="fb:app_id" content="1841787069391547">
+        <link rel="icon" href="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-32x32.png" sizes="32x32">
+<link rel="icon" href="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-192x192.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-180x180.png">
+<meta name="msapplication-TileImage" content="https://elitedatascience.com/wp-content/uploads/2016/11/cropped-beaker-dark-full-270x270.png">
+<style type="text/css" title="dynamic-css" class="options-output">.sub-menu{border-bottom-color:#005BDC;}.op-navbar{background:#ffffff;}.op-navbar{border-bottom-color:#f0f0f0;}.header-style-centered #navbar, .header-style-with-tagline #navbar{border-top-color:#f0f0f0;}.op-footer{background:#fcfcfc;}.op-footer h1, .op-footer h2, .op-footer h3, .op-footer h4, .op-footer h5, .op-footer h6, .op-footer .calendar_wrap{color:#191919;}.op-footer, .footer-copyright, .op-footer p, .op-footer ul, .op-footer{color:#6d6d6d;}.op-footer a{color:#6d6d6d;}.op-footer a:hover{color:#6d6d6d;}.op-footer a:active{color:#6d6d6d;}.op-entry a{color:#0f87c9;}.op-entry a:hover{color:#0f87c9;}.op-entry a:active{color:#0f87c9;}.btn a, .btn, .btn-primary,
+                                        .op-navbar .nav-close-wrap,
+                                        .pagination > .btn,
+                                        #infinite-handle span button,
+                                        .woocommerce-product-search input[type=submit],
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle{background-color:#005BDC;}.op-read-more{border-color:#005BDC;}.btn a:hover,
+                                        .btn:hover,
+                                        .btn-primary:hover,
+                                        .btn a:active,
+                                        .btn:active,
+                                        .btn-primary:active,
+                                        .pagination > .btn:hover,
+                                        .pagination > .btn:active,
+                                        #infinite-handle span button:hover,
+                                        #infinite-handle span button:active,
+                                        .woocommerce-product-search input[type=submit]:hover,
+                                        .woocommerce-product-search input[type=submit]:active,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range:hover,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-range:active,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle:hover,
+                                        .woocommerce .widget_price_filter .ui-slider .ui-slider-handle:active,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content:hover,
+                                        .woocommerce .widget_price_filter .price_slider_wrapper .ui-widget-content:active{background-color:#0054cc;}.op-read-more:hover,
+                                        .op-read-more:active{border-color:#0054cc;}.btn a, .btn, .btn-primary,
+                            .pagination > .btn,
+                            .pagination > .btn:hover,
+                            .pagination > .btn:active,
+                            #infinite-handle span button,
+                            #infinite-handle span button:hover,
+                            #infinite-handle span button:hover:active,
+                            .op-navbar .nav-close-wrap,
+                            .woocommerce-product-search input[type=submit]{color:#ffffff;}.op-navbar .navbar-nav > .menu-item > a, .op-navbar .navbar-nav li .navbar-tagline,
+                                .op-navbar .navbar-nav .menu-item .menu-item-search-link,
+                                .op-navbar .navbar-nav .menu-item .op-search-form-close-button,
+                                .op-navbar.navbar-default .navbar-toggle,
+                                .op-search-form-top-menu {color:#6b6b6b;} .op-navbar .navbar-nav > .menu-item:hover > a,
+                                .op-navbar .navbar-nav li .navbar-tagline:hover,
+                                .op-navbar .navbar-nav .menu-item .menu-item-search-link:hover,
+                                .op-navbar .navbar-nav .menu-item .op-search-form-close-button:hover,
+                                .op-navbar.navbar-default .navbar-toggle:hover,
+                                .op-navbar .navbar-nav li .sub-menu a:hover {color:#6b6b6b;} .op-navbar .navbar-nav > .menu-item.active a,
+                                .op-navbar .navbar-nav > .menu-item.active:hover a {color:#6b6b6b;} .op-small-category-link a,
+                            .op-small-category-link a:hover,
+                            .op-small-category-link a:focus,
+                            .op-small-category-link a:active,
+                            .op-small-category-link span,
+                            .op-content-grid-row .op-small-category-link a,
+                            .op-homepage-hero-category,
+                            .op-homepage-hero-category:hover,
+                            .op-homepage-hero-category:focus,
+                            .op-homepage-hero-category:active{color:#ffffff;}.op-small-category-link a,
+                                        .op-small-category-link a:hover,
+                                        .op-small-category-link a:focus,
+                                        .op-small-category-link a:active,
+                                        .op-small-category-link span,
+                                        .op-homepage-hero-category,
+                                        .op-homepage-hero-category:hover,
+                                        .op-homepage-hero-category:focus,
+                                        .op-homepage-hero-category:active{background-color:#1cb186;}body, p, .sm-wrap{font-family:Arial, Helvetica, sans-serif;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading body, p, .sm-wrap,{opacity: 0;}.ie.wf-loading body, p, .sm-wrap,{visibility: hidden;}body, p{font-size:18px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading body, p,{opacity: 0;}.ie.wf-loading body, p,{visibility: hidden;}h1, h2, h3, h4, h5, h6, .op-entry .op-author-name{font-family:Poppins;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h1, h2, h3, h4, h5, h6, .op-entry .op-author-name,{opacity: 0;}.ie.wf-loading h1, h2, h3, h4, h5, h6, .op-entry .op-author-name,{visibility: hidden;}h1{line-height:40px;font-size:35px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h1,{opacity: 0;}.ie.wf-loading h1,{visibility: hidden;}h2{line-height:34px;font-size:26px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h2,{opacity: 0;}.ie.wf-loading h2,{visibility: hidden;}h3{line-height:33px;font-size:22px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h3,{opacity: 0;}.ie.wf-loading h3,{visibility: hidden;}h4{line-height:30px;font-size:20px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h4,{opacity: 0;}.ie.wf-loading h4,{visibility: hidden;}h5{line-height:27px;font-size:17px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h5,{opacity: 0;}.ie.wf-loading h5,{visibility: hidden;}h6{line-height:24px;font-size:14px;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading h6,{opacity: 0;}.ie.wf-loading h6,{visibility: hidden;}.op-homepage-hero-button,
+                            .op-homepage-hero-button:hover,
+                            .op-homepage-hero-button:active,
+                            .op-homepage-hero-button:focus{color:#ffffff;}.op-homepage-hero-button-style-2{border-color:#ffffff;}.op-homepage-hero-button{background-color:#005BDC;}.op-homepage-hero-button:hover,
+                                        .op-homepage-hero-button:active,
+                                        .op-homepage-hero-button:focus{background-color:#0054cc;}.op-homepage-hero{background-size:cover;background-image:url('https://elitedatascience.com/wp-content/uploads/2018/02/future-city-3-comp.jpeg');}.op-homepage-hero-container{background-color:rgba(50,50,50,0.75);}.op-homepage-hero, .op-homepage-hero-content, .op-homepage-hero-title, .op-homepage-hero-subtitle, .op-homepage-hero-excerpt{color:#ffffff;}.op-homepage-hero-title::after{background-color:#ffffff;}.op-homepage-hero-title{font-family:Poppins;font-weight:600;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-title,{opacity: 0;}.ie.wf-loading .op-homepage-hero-title,{visibility: hidden;}.op-homepage-hero-subtitle,.op-homepage-hero-excerpt{font-family:Karla;font-weight:400;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-subtitle,.wf-loading .op-homepage-hero-excerpt,{opacity: 0;}.ie.wf-loading .op-homepage-hero-subtitle,.ie.wf-loading .op-homepage-hero-excerpt,{visibility: hidden;}.op-homepage-hero-button{font-family:Karla;font-weight:400;font-style:normal;opacity: 1;visibility: visible;-webkit-transition: opacity 0.24s ease-in-out;-moz-transition: opacity 0.24s ease-in-out;transition: opacity 0.24s ease-in-out;}.wf-loading .op-homepage-hero-button,{opacity: 0;}.ie.wf-loading .op-homepage-hero-button,{visibility: hidden;}.op-hero-header,
+                .op-hero-area .feature-title,
+                .op-hero-area .op-headline,
+                .op-hero-area p,
+                .op-hero-layout-meta-wrap,
+                .op-blog-meta-wrapper,
+                .op-hero-layout-meta-wrap a{color:#ffffff;}.page .op-hero-header, .page .op-hero-area .feature-title, .page .op-hero-area .op-headline, .page .op-hero-layout-meta-wrap, .page .op-blog-meta-wrapper, .page .op-hero-layout-meta-wrap a{color:#ffffff;}</style><style type="text/css">.op-blog-post-header {background-color: #23282d;
+                background-image: -moz-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: -webkit-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: linear-gradient(to bottom, #23282d 0%, #23282d 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#23282d', endColorstr='#23282d', GradientType=0); color: #ffffff; }.op-hero-area .feature-title {color: #ffffff; }.op-hero-area .op-headline {color: #ffffff; }.page .op-hero-area .op-headline {color: #ffffff; }.op-hero-area .op-blog-meta-wrapper {color: #ffffff; }.op-hero-area .op-hero-layout-meta-wrap a {color: #ffffff; }.op-blog-post-header .op-small-category-link a {color: ; background-color: ; }</style><style type="text/css">.fancybox-margin{margin-right:17px;}</style><link rel="stylesheet" href="./Python Cheat Sheet for Data Science_files/css"><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+
+<body class="post-template-default single single-post postid-1510 single-format-standard op-plugin op-navbar-fixed op-not-touch-device" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+        <div id="page" class="page-container hfeed site">
+        <a class="skip-link screen-reader-text" href="https://elitedatascience.com/python-cheat-sheet#content">Skip to content</a>
+        <header id="masthead" class="site-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader" role="banner">
+            <nav class="op-navbar navbar navbar-default op-navbar-fixed" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation" style="margin-top: 0px; top: 0px;">
+                                <div class="container op-container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="https://elitedatascience.com/">
+                            <img src="./Python Cheat Sheet for Data Science_files/elitedatascience-dark.png" srcset="https://elitedatascience.com/wp-content/uploads/2016/11/elitedatascience-dark.png 1x, https://elitedatascience.com/wp-content/uploads/2016/11/elitedatascience-dark.png 2x" title="EliteDataScience" alt="EliteDataScience" width="485" height="50">                        </a>
+                        <button type="button" class="navbar-toggle collapsed glyphicon glyphicon-menu-hamburger" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                    </div> <!--/.navbar-header -->
+                    <div id="navbar" class="pull-right navbar-menu">
+                        <div class="nav-close-wrap text-right ">
+                            <span class="glyphicon glyphicon-remove closenav"></span>
+                        </div>
+                        <div class="menu-header-navigation-container"><ul id="menu-header-navigation" class="nav navbar-nav"><li id="menu-item-1586" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1586"><a href="https://elitedatascience.com/start-here"><i class="fa fa-bolt"></i><span class="fontawesome-text"> Start Here</span></a></li>
+<li id="menu-item-1886" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1886"><a href="https://elitedatascience.com/primer"><i class="fa fa-book"></i><span class="fontawesome-text"> Primer</span></a></li>
+<li id="menu-item-1577" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-has-children menu-item-1577"><a href="https://elitedatascience.com/"><i class="fa fa-thumb-tack"></i><span class="fontawesome-text"> Articles</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1572" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1572"><a href="https://elitedatascience.com/category/guides">Guides</a></li>
+	<li id="menu-item-1570" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1570"><a href="https://elitedatascience.com/category/explainers">Concept Explainers</a></li>
+	<li id="menu-item-1571" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1571"><a href="https://elitedatascience.com/category/tutorials">Code Tutorials</a></li>
+	<li id="menu-item-1573" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1573"><a href="https://elitedatascience.com/category/career">Career Help</a></li>
+	<li id="menu-item-1569" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1569"><a href="https://elitedatascience.com/category/resources">Tools &amp; Resources</a></li>
+</ul>
+</li>
+<li id="menu-item-1486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-1486"><a href="https://elitedatascience.com/python-cheat-sheet#"><i class="fa fa-university"></i><span class="fontawesome-text"> Products</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-1429" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1429"><a href="https://elitedatascience.com/machine-learning-masterclass">ML Masterclass</a></li>
+	<li id="menu-item-1487" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1487"><a href="https://elitedatascience.com/interview-prep-kit">Interview Prep Kit</a></li>
+</ul>
+</li>
+
+            <li class="menu-item menu-item-search-form">
+                <span class="menu-item-search-form-container menu-item-search-form-item menu-item-search-toggle menu-item-hidden">
+                    <form method="get" class="searchform" action="https://elitedatascience.com/">
+                        <div class="inline-flex">
+                            <input size="15" class="op-search-form-top-menu" type="text" value="" name="s" id="s" placeholder="Enter your search keyword(s) here and press enter">
+                        </div>
+                    </form>
+                    <a class="op-search-form-close-button" id="op_remove_search_link" href="https://elitedatascience.com/python-cheat-sheet#">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <span class="visuallyhidden">Close Search Form</span>
+                    </a>
+                </span>
+
+                <span class="menu-item-search-form-item menu-item-search-link menu-item-search-toggle">
+                    <a class="menu-item-search-link" id="op_search_link" href="https://elitedatascience.com/python-cheat-sheet#">
+                        <span class="glyphicon glyphicon-search"></span>
+                        <span class="visuallyhidden">Open Search Form</span>
+                    </a>
+                </span>
+            </li>
+
+            </ul></div>                    </div><!--/.nav-collapse -->
+                </div> <!--/.container-fluid -->
+            </nav>
+        </header>
+        <main id="main" class="site-content" role="main">
+            <div class="op_optin_single_after_header_container op_optin_style_dark">
+    <div id="op-trigger-op_theme_popup_5c07c607268b6" class="optin-box-optimizetheme-lightbox optin-box-optimizetheme optin-box-optimizetheme-after-header optin-box-optimizetheme-dark">
+        <div class="container op-container optin-box-content optin-box-optimizetheme-content"><div class="optin-box-optimizetheme-headline-container"><h2 class="optin-box-optimizetheme-headline">Shorten the Learning Curve!</h2><p class="optin-box-optimizetheme-subheadline">Download 10+ Bonus Resources for Data Science &amp; Machine Learning</p></div>
+            <div class="optin-box-optimizetheme-open-lightbox-container">
+                <button type="button" class="default-button" data-toggle="modal" data-target="#op_theme_popup_5c07c607268b6">Get instant access!</button>
+            </div>
+        </div></div>
+
+    <div class="optin-box-optimizetheme-modal modal fade" id="op_theme_popup_5c07c607268b6" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <button type="button" class="close optin-box-optimizetheme-close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+            <div class="modal-content">
+                <div class="modal-body">
+                <aside id="op-optin-5c070c5278854" class="optin-box optin-box-optimizetheme optin-box-optimizetheme-after-header optin-box-optimizetheme-dark">
+    <div class="container op-container optin-box-content optin-box-optimizetheme-content">
+        
+        <div class="optin-box-optimizetheme-headline-container">
+            <h2 class="optin-box-optimizetheme-headline">EDS Subscriber Vault</h2>            <p class="optin-box-optimizetheme-subheadline">Download free coding cheatsheets, machine learning checklists, PDF worksheets, resource lists, and more...</p>        </div>
+
+        <div class="optin-box-optimizetheme-form-container">
+        <form action="https://www.getdrip.com/forms/297767675/submissions" method="post" class="cf op-optin-validation"><div style="display:none"><input type="hidden" name="redirect_url" value="https://www.getdrip.com/forms/297767675/submissions"><input type="hidden" name="email_field" value="fields[email]"></div>                <div class="text-boxes optin-box-optimizetheme-text-boxes">
+                    <div class="text-box name"><input type="text" required="required" name="fields[first_name]" placeholder="Enter your first name" value=""></div><div class="text-box email"><input type="email" required="required" name="fields[email]" placeholder="Enter your best email" value=""></div>                </div>
+                <button type="submit" class="default-button"><span>Let's Start!</span></button>                            <input type="hidden" id="op_optin_nonce" name="op_optin_nonce" value="7c50327666"><input type="hidden" name="_wp_http_referer" value="/python-cheat-sheet"></form>
+        </div>
+        <div class="optin-box-optimizetheme-privacy">No spam. No nonsense.</div>
+            </div>
+    <style>#op-optin-5c070c5278854 .default-button { color: #FFFFFF; background-color: #276CF2; }#op-optin-5c070c5278854 .default-button:hover { background-color: #0054cc; }</style>
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div><style>#op-trigger-op_theme_popup_5c07c607268b6 .optin-box-optimizetheme-open-lightbox-container .default-button { color: #FFFFFF; background-color: #276CF2; }#op-trigger-op_theme_popup_5c07c607268b6 .optin-box-optimizetheme-open-lightbox-container .default-button:hover { background-color: #0054cc; }</style></div>
+            <article id="post-1510" class="post-1510 post type-post status-publish format-standard has-post-thumbnail hentry category-resources category-tutorials" itemscope="itemscope" itemtype="http://schema.org/BlogPosting" itemprop="blogPost">
+                <div class="op-hero-area op-blog-post" role="banner">
+                    <header class="op-hero-area op-blog-post-header">
+    <div class="op-blog-hero-background">
+                <div class="op-blog-header-content op-blog-header-content-img">
+            <div class="container op-container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="op-category-wrap">        <div class="op-small-category-link"><a href="https://elitedatascience.com/category/resources" rel="category tag">Resources</a></div> <div class="op-small-category-link"><a href="https://elitedatascience.com/category/tutorials" rel="category tag">Tutorials</a></div>
+    </div><h1 class="op-headline" itemprop="headline"><a href="https://elitedatascience.com/python-cheat-sheet">Python Cheat Sheet for Data Science</a></h1><div class="op-blog-meta-wrapper"><span class="op-post-date"><span class="glyphicon glyphicon-time op-list-space-right-small" aria-hidden="true"></span><time class="entry-date published updated op-list-space-right-large" datetime="2017-11-28T09:21:49+00:00" itemprop="datePublished">November 28, 2017</time></span></div>                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="attachment-post-thumbnail size-post-thumbnail wp-post-image" src="./Python Cheat Sheet for Data Science_files/Python-Cheat-Sheet-Feature-Without-Text.jpg" alt="Python Cheat Sheet for Data Science" width="1200" height="628"><div class="op-blog-hero-background-image"></div><div class="post-thumbnail-placeholder"></div><style> .op-blog-post-header { background-color: #23282d;
+                background-image: -moz-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: -webkit-linear-gradient(top, #23282d 0%, #23282d 100%);
+                background-image: linear-gradient(to bottom, #23282d 0%, #23282d 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#23282d', endColorstr='#23282d', GradientType=0); } .op-blog-header-content-img { background-color:rgba(50, 50, 50, 0.75) }.op-blog-hero-background-image { background-image: url('https://elitedatascience.com/wp-content/uploads/2017/11/Python-Cheat-Sheet-Feature-Without-Text.jpg'); background-size: cover;background-position: center center; } </style>    </div>
+</header>
+                </div>
+
+                
+                <div id="primary" class="content-area">
+                    
+                                            <div class="op-entry single container op-container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-8 col-md-offset-2">
+                                    
+<div class="entry-content" itemprop="text">
+    <aside class="mashsb-container mashsb-main mashsb-stretched"><div class="mashsb-box"><div class="mashsb-count mash-small" style="float:left;"><div class="counts mashsbcount">177</div><span class="mashsb-sharetext">SHARES</span></div><div class="mashsb-buttons"><a class="mashicon-facebook mash-small mash-center mashsb-noshadow" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Share</span></a><a class="mashicon-google mash-small mash-center mashsb-noshadow" href="https://plus.google.com/share?text=Python+Cheat+Sheet+for+Data+Science&amp;url=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Google</span></a><a class="mashicon-linkedin mash-small mash-center mashsb-noshadow" href="https://www.linkedin.com/shareArticle?trk=Python+Cheat+Sheet+for+Data+Science&amp;url=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Linkedin</span></a><a class="mashicon-twitter mash-small mash-center mashsb-noshadow" href="https://twitter.com/intent/tweet?text=Python%20Cheat%20Sheet%20for%20Data%20Science&amp;url=https://elitedatascience.com/python-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Tweet</span></a><div class="onoffswitch2 mash-small mashsb-noshadow" style="display:none;"></div></div>
+            </div>
+                <div style="clear:both;"></div><div class="mashsb-toggle-container"></div></aside>
+            <!-- Share buttons by mashshare.net - Version: 3.5.3--><div class="tve-tl-cnt-wrap"><p>Pandas, Numpy, and Scikit-Learn are among the most popular libraries for data science and analysis with Python.</p>
+<p>Numpy is used for lower level scientific computation. Pandas is built on top of Numpy and designed for practical data analysis in Python. Scikit-Learn comes with many machine learning models that you can use out of the box.</p>
+<p>In this cheat sheet, we’ll summarize some of the most common and useful functionality from these libraries. Let’s jump straight in!</p><div class="tve-leads-in-content tve-tl-anim tve-leads-track-in_content-35 tl-anim-instant tve-leads-triggered"><div class="tl-style" id="tve_tcb2_set-022" data-state="35"><style type="text/css" class="tve_custom_style">@import url("//fonts.googleapis.com/css?family=Roboto:100,400,300,500&subset=latin");@import url("//fonts.googleapis.com/css?family=Open+Sans:300,700&subset=latin");@media (min-width: 300px){#tve_editor [data-css="tve-u-165b017ec58dfd2"] strong { font-weight: 300; }[data-css="tve-u-115b017ec58de90"] strong { font-weight: 700 !important; }[data-css="tve-u-135b017ec58df12"] { margin-top: 5px !important; }[data-css="tve-u-85b017ec58ddd2"] { margin-top: 20px !important; margin-bottom: 10px !important; }#tve_editor [data-css="tve-u-165b017ec58dfd2"]:hover button { background-color: rgb(189, 74, 67) !important; }#tve_editor [data-css="tve-u-155b017ec58df91"]:hover input { background-color: rgb(204, 204, 204) !important; }#tve_editor [data-css="tve-u-145b017ec58df52"]:hover input { background-color: rgb(204, 204, 204) !important; }[data-css="tve-u-125b017ec58ded2"] { border-bottom: 1px solid rgba(49, 59, 69, 0.5); border-right: 1px solid rgba(49, 59, 69, 0.5); border-left: 1px solid rgba(49, 59, 69, 0.5); z-index: 1; border-top: none; border-image: initial; padding: 25px 20px 11px !important; margin-top: -24px !important; }[data-css="tve-u-35b017ec58dc91"] { padding-top: 0px !important; padding-bottom: 0px !important; }[data-css="tve-u-65b017ec58dd55"] { max-width: 75%; }[data-css="tve-u-45b017ec58dcd7"] { max-width: 25%; }[data-css="tve-u-55b017ec58dd16"] { float: none; margin-left: auto; margin-right: auto; width: 142px; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px; margin-top: 10px !important; }[data-css="tve-u-15b017ec58dc12"] { z-index: 6; border: none; padding: 20px 20px 30px !important; }#tve_editor [data-css="tve-u-165b017ec58dfd2"] button { font-size: 20px; font-family: Roboto; border-radius: 0px; overflow: hidden; line-height: 28px; font-weight: normal !important; background-color: rgb(236, 92, 84) !important; padding-top: 13px !important; padding-bottom: 13px !important; }#tve_editor [data-css="tve-u-155b017ec58df91"] input { line-height: 28px; color: rgb(51, 51, 51); font-family: Roboto; font-weight: 300; border-radius: 0px; overflow: hidden; border: none; background-image: none !important; background-color: rgb(221, 222, 223) !important; padding: 13px !important; }#tve_editor [data-css="tve-u-145b017ec58df52"] input { line-height: 28px; color: rgb(51, 51, 51); font-family: Roboto; font-weight: 300; border-radius: 0px; overflow: hidden; border: none; background-image: none !important; background-color: rgb(221, 222, 223) !important; padding: 13px !important; }[data-css="tve-u-115b017ec58de90"] { line-height: 27px !important; }#tve_editor [data-css="tve-u-115b017ec58de90"] { font-family: "Open Sans" !important; font-weight: 300 !important; color: rgb(255, 255, 255) !important; font-size: 17px !important; }[data-css="tve-u-95b017ec58de11"] strong { font-weight: 500 !important; }[data-css="tve-u-95b017ec58de11"] { line-height: 40px !important; }#tve_editor [data-css="tve-u-95b017ec58de11"] { font-weight: 300; font-family: Roboto !important; color: rgb(255, 255, 255) !important; font-size: 32px !important; }[data-css="tve-u-25b017ec58dc51"] { clip-path: url("#clip-bottom-2900qzmp4yzq7"); background-color: rgb(49, 59, 69) !important; }[data-css="tve-u-05b017ec58dbd0"] { background-color: rgb(255, 255, 255) !important; padding: 0px !important; }}@media (max-width: 767px){[data-css="tve-u-125b017ec58ded2"] { padding-left: 14px !important; padding-bottom: 14px !important; padding-right: 14px !important; }[data-css="tve-u-15b017ec58dc12"] { padding: 14px !important; }[data-css="tve-u-75b017ec58dd94"] { text-align: center; }[data-css="tve-u-55b017ec58dd16"] { width: 90px; margin-bottom: 0px !important; }[data-css="tve-u-95b017ec58de11"] { line-height: 1.2em !important; }#tve_editor [data-css="tve-u-95b017ec58de11"] { font-size: 28px !important; }[data-css="tve-u-105b017ec58de50"] { padding-bottom: 10px !important; }[data-css="tve-u-25b017ec58dc51"] { clip-path: url("#clip-mobile-bottom-2900qzmp4yzq7"); }}</style><div class="tve-leads-conversion-object" data-tl-type="in_content"><div class="tve_flt"><div id="tve_editor" class="tve_shortcode_editor"><div class="thrv-leads-form-box tve_no_drag tve_no_icons thrv_wrapper tve_editor_main_content thrv-leads-in-content tve_empty_dropzone" style="" data-css="tve-u-05b017ec58dbd0"><div class="thrv_wrapper thrv-page-section" style="" data-css="tve-u-15b017ec58dc12">
+<div class="tve-page-section-out" data-css="tve-u-25b017ec58dc51" data-clip-id="2900qzmp4yzq7"><svg width="0" height="0" class="tve-decoration-svg"><defs><clippath id="clip-bottom-2900qzmp4yzq7" class="decoration-clip clip-path-bottom" clipPathUnits="objectBoundingBox" data-screen="" decoration-type="pointer" pointer-width="5" pointer-height="9" style=""><polygon points="0 0, 0 0.91, 0.475 0.91, 0.5 1, 0.525 0.91, 1 0.91, 1 0"></polygon></clippath><clippath id="clip-mobile-bottom-2900qzmp4yzq7" class="decoration-clip clip-path-mobile-bottom" clipPathUnits="objectBoundingBox" data-screen="mobile-" decoration-type="pointer" pointer-width="5" pointer-height="2" style=""><polygon points="0 0, 0 0.98, 0.475 0.98, 0.5 1, 0.525 0.98, 1 0.98, 1 0"></polygon></clippath></defs></svg></div>
+<div class="tve-page-section-in tve_empty_dropzone"><div class="thrv_wrapper thrv-columns" style=""><div class="tcb-flex-row tcb-resized tcb--cols--2" data-css="tve-u-35b017ec58dc91"><div class="tcb-flex-col" data-css="tve-u-45b017ec58dcd7" style=""><div class="tcb-col tve_empty_dropzone" style=""><div class="thrv_wrapper tve_image_caption on_hover" data-css="tve-u-55b017ec58dd16" style=""><span class="tve_image_frame" style="width: 100%;"><img class="tve_image wp-image-1756" alt="Python for Data Science Cheatsheet" width="240" height="340" title="Python for Data Science Cheatsheet" data-id="1756" src="./Python Cheat Sheet for Data Science_files/Data-Science-Basics-Cheatsheet-Cover.jpg" style="width: 100%;"></span></div></div></div><div class="tcb-flex-col" data-css="tve-u-65b017ec58dd55" style=""><div class="tcb-col tve_empty_dropzone" style="" data-css="tve-u-75b017ec58dd94"><div class="thrv_wrapper thrv_text_element tve_empty_dropzone" style="" data-css="tve-u-85b017ec58ddd2"><p data-css="tve-u-95b017ec58de11" data-default="Enter your text here..."><strong>Free: Python for DS Cheatsheet</strong></p></div><div class="thrv_wrapper thrv_text_element tve_empty_dropzone" style="" data-css="tve-u-105b017ec58de50"><p data-css="tve-u-115b017ec58de90" data-default="Enter your text here...">Get all of this tutorial's code in a <strong>handy PDF cheatsheet</strong> + plenty of other free cheatsheets, checklists, worksheets, and resource lists in our <strong><em>Subscriber Vault.</em></strong></p></div></div></div></div></div></div>
+</div><div class="thrv_wrapper thrv-page-section" style="" data-css="tve-u-125b017ec58ded2">
+<div class="tve-page-section-out"></div>
+<div class="tve-page-section-in tve_empty_dropzone"><div class="thrv_wrapper thrv_lead_generation" data-connection="api" style="" data-css="tve-u-135b017ec58df12"><input type="hidden" class="tve-lg-err-msg" value="{&quot;email&quot;:&quot;Email address invalid&quot;,&quot;phone&quot;:&quot;Phone number invalid&quot;,&quot;password&quot;:&quot;Password invalid&quot;,&quot;passwordmismatch&quot;:&quot;Password mismatch error&quot;,&quot;required&quot;:&quot;Required field missing&quot;}">
+<div class="thrv_lead_generation_container tve_clearfix">
+<form action="https://elitedatascience.com/python-cheat-sheet#" method="post" novalidate="novalidate">
+<div class="tve_lead_generated_inputs_container tve_clearfix tve_empty_dropzone">
+<div class="thrv_wrapper thrv-columns"><div class="tcb-flex-row tcb--cols--3"><div class="tcb-flex-col"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input" data-css="tve-u-145b017ec58df52">
+<input type="text" data-field="name" name="name" placeholder="First Name" data-placeholder="First Name" style="" data-required="0" data-validation="" class="">
+</div></div></div><div class="tcb-flex-col"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input" data-css="tve-u-155b017ec58df91">
+<input type="email" data-field="email" data-required="1" data-validation="email" name="email" placeholder="Email" data-placeholder="Email" class="">
+</div></div></div><div class="tcb-flex-col"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_submit_container tve_lg_submit" data-css="tve-u-165b017ec58dfd2">
+<button type="submit" class="tve-froala" style="">Send My Download</button>
+</div></div></div></div></div><div class="tve_lg_input_container tve_clearfix tve_lg_checkbox tcb-lg-consent" style="display: none;"><div class="tve_lg_checkbox_wrapper"><input type="checkbox" name="user_consent" value="1" id="tcb-consent-tve-u-1636eb14b58"><label for="tcb-consent-tve-u-1636eb14b58"><span class="thrv-inline-text">Insert details about how the information is going to be processed</span></label></div><input type="hidden" name="consent_config" class="consent-config" value="YTozOntzOjc6ImVuYWJsZWQiO2I6MDtzOjg6InJlcXVpcmVkIjtiOjE7czoxMToiYWx3YXlzX3NlbmQiO2E6MDp7fX0="></div>
+</div>
+<input id="_submit_option" type="hidden" name="_submit_option" value="message"><input id="__tcb_lg_msg" type="hidden" name="__tcb_lg_msg" value="YToyOntzOjU6ImVycm9yIjtzOjY6IkVycm9yISI7czo3OiJzdWNjZXNzIjtzOjc0OiJFdXJla2EhIFBsZWFzZSBjaGVjayB5b3VyIGVtYWlsIGluIGEgY291cGxlIG1pbnV0ZXMgZm9yIHRoZSBkb3dubG9hZCBsaW5rLiI7fQ=="><input type="hidden" name="__tcb_lg_fc" id="__tcb_lg_fc" value="YToxOntzOjQ6ImRyaXAiO3M6OToiNjcwOTg0NDI3Ijt9"><input type="hidden" id="drip_type" class="tve-api-extra" name="drip_type" value="list"><input type="hidden" id="drip_first_name_field" class="tve-api-extra" name="drip_first_name_field" value="thrive_first_name"><input type="hidden" id="drip_last_name_field" class="tve-api-extra" name="drip_last_name_field" value="thrive_last_name"><input type="hidden" id="drip_optin" class="tve-api-extra" name="drip_optin" value="d"></form>
+</div>
+</div></div>
+</div></div></div></div></div></div></div>
+<h2><strong>Importing Data</strong><strong>&nbsp;</strong></h2>
+<p>Any kind of data analysis starts with getting hold of some data. <a href="https://pandas.pydata.org/pandas-docs/stable/" target="_blank" rel="noopener">Pandas</a> gives you plenty of options for getting data into your Python workbook:</p>
+		<div id="crayon-5c07c606eb30b216282129" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Importing Data</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-3">3</div><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-4">4</div><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-5">5</div><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-6">6</div><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-7">7</div><div class="crayon-num" data-line="crayon-5c07c606eb30b216282129-8">8</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb30b216282129-1"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_csv</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># From a CSV file</span></div><div class="crayon-line" id="crayon-5c07c606eb30b216282129-2"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_table</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># From a delimited text file (like TSV)</span></div><div class="crayon-line" id="crayon-5c07c606eb30b216282129-3"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_excel</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># From an Excel file</span></div><div class="crayon-line" id="crayon-5c07c606eb30b216282129-4"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_sql</span><span class="crayon-sy">(</span><span class="crayon-v">query</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">connection_object</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Reads from a SQL table/database</span></div><div class="crayon-line" id="crayon-5c07c606eb30b216282129-5"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_json</span><span class="crayon-sy">(</span><span class="crayon-v">json_string</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Reads from a JSON formatted string, URL or file.</span></div><div class="crayon-line" id="crayon-5c07c606eb30b216282129-6"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_html</span><span class="crayon-sy">(</span><span class="crayon-v">url</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Parses an html URL, string or file and extracts tables to a list of dataframes</span></div><div class="crayon-line" id="crayon-5c07c606eb30b216282129-7"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_clipboard</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Takes the contents of your clipboard and passes it to read_table()</span></div><div class="crayon-line" id="crayon-5c07c606eb30b216282129-8"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">DataFrame</span><span class="crayon-sy">(</span><span class="crayon-k ">dict</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># From a dict, keys for columns names, values for data as lists</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Exploring Data</strong><strong>&nbsp;</strong></h2>
+<p>Once you have imported your data into a Pandas dataframe, you can use these methods to get a sense of what the data looks like:</p>
+		<div id="crayon-5c07c606eb316370228287" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Exploring Data</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-3">3</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-4">4</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-5">5</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-6">6</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-7">7</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-8">8</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-9">9</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-10">10</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-11">11</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-12">12</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-13">13</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-14">14</div><div class="crayon-num" data-line="crayon-5c07c606eb316370228287-15">15</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb316370228287-1"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">shape</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Prints number of rows and columns in dataframe</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-2"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">head</span><span class="crayon-sy">(</span><span class="crayon-v">n</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Prints first n rows of the DataFrame</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-3"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">tail</span><span class="crayon-sy">(</span><span class="crayon-v">n</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Prints last n rows of the DataFrame</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-4"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">info</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Index, Datatype and Memory information</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-5"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">describe</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Summary statistics for numerical columns</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-6"><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-e">value_counts</span><span class="crayon-sy">(</span><span class="crayon-v">dropna</span><span class="crayon-o">=</span><span class="crayon-t">False</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Views unique values and counts</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-7"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-k ">apply</span><span class="crayon-sy">(</span><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-v">Series</span><span class="crayon-sy">.</span><span class="crayon-v">value_counts</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Unique values and counts for all columns</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-8"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">describe</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Summary statistics for numerical columns</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-9"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">mean</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the mean of all columns</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-10"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">corr</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the correlation between columns in a DataFrame</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-11"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">count</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the number of non-null values in each DataFrame column</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-12"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-k ">max</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the highest value in each column</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-13"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-k ">min</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the lowest value in each column</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-14"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">median</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the median of each column</span></div><div class="crayon-line" id="crayon-5c07c606eb316370228287-15"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">std</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the standard deviation of each column</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Selecting</strong></h2>
+<p>Often, you might need to select a single element or a certain subset of the data to inspect it or perform further analysis. These methods will come in handy:</p>
+		<div id="crayon-5c07c606eb319273017446" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Selecting Data</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb319273017446-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb319273017446-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb319273017446-3">3</div><div class="crayon-num" data-line="crayon-5c07c606eb319273017446-4">4</div><div class="crayon-num" data-line="crayon-5c07c606eb319273017446-5">5</div><div class="crayon-num" data-line="crayon-5c07c606eb319273017446-6">6</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb319273017446-1"><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">col</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Returns column with label col as Series</span></div><div class="crayon-line" id="crayon-5c07c606eb319273017446-2"><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-sy">[</span><span class="crayon-v">col1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">col2</span><span class="crayon-sy">]</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Returns Columns as a new DataFrame</span></div><div class="crayon-line" id="crayon-5c07c606eb319273017446-3"><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-v">iloc</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Selection by position (selects first element)</span></div><div class="crayon-line" id="crayon-5c07c606eb319273017446-4"><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-v">loc</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Selection by index (selects element at index 0)</span></div><div class="crayon-line" id="crayon-5c07c606eb319273017446-5"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">iloc</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-o">:</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># First row</span></div><div class="crayon-line" id="crayon-5c07c606eb319273017446-6"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">iloc</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># First element of first column</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Data Cleaning </strong></h2>
+<p>If you’re working with real world data, chances are you’ll need to clean it up. These are some helpful methods:</p>
+		<div id="crayon-5c07c606eb31a029421126" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Data Cleaning</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-3">3</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-4">4</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-5">5</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-6">6</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-7">7</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-8">8</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-9">9</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-10">10</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-11">11</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-12">12</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-13">13</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-14">14</div><div class="crayon-num" data-line="crayon-5c07c606eb31a029421126-15">15</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb31a029421126-1"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-v">columns</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-s">'a'</span><span class="crayon-sy">,</span><span class="crayon-s">'b'</span><span class="crayon-sy">,</span><span class="crayon-s">'c'</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Renames columns</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-2"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">isnull</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Checks for null Values, Returns Boolean Array</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-3"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">notnull</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Opposite of s.isnull()</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-4"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">dropna</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Drops all rows that contain null values</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-5"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">dropna</span><span class="crayon-sy">(</span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Drops all columns that contain null values</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-6"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">dropna</span><span class="crayon-sy">(</span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-v">thresh</span><span class="crayon-o">=</span><span class="crayon-v">n</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Drops all rows have have less than n non null values</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-7"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">fillna</span><span class="crayon-sy">(</span><span class="crayon-v">x</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Replaces all null values with x</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-8"><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-e">fillna</span><span class="crayon-sy">(</span><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-e">mean</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Replaces all null values with the mean (mean can be replaced with almost any function from the statistics section)</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-9"><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-e">astype</span><span class="crayon-sy">(</span><span class="crayon-k ">float</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Converts the datatype of the series to float</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-10"><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-e">replace</span><span class="crayon-sy">(</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-s">'one'</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Replaces all values equal to 1 with 'one'</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-11"><span class="crayon-v">s</span><span class="crayon-sy">.</span><span class="crayon-e">replace</span><span class="crayon-sy">(</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-cn">3</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-sy">[</span><span class="crayon-s">'one'</span><span class="crayon-sy">,</span><span class="crayon-s">'three'</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Replaces all 1 with 'one' and 3 with 'three'</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-12"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">rename</span><span class="crayon-sy">(</span><span class="crayon-v">columns</span><span class="crayon-o">=</span><span class="crayon-r">lambda</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Mass renaming of columns</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-13"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">rename</span><span class="crayon-sy">(</span><span class="crayon-v">columns</span><span class="crayon-o">=</span><span class="crayon-sy">{</span><span class="crayon-s">'old_name'</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'new_ name'</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Selective renaming</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-14"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">set_index</span><span class="crayon-sy">(</span><span class="crayon-s">'column_one'</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Changes the index</span></div><div class="crayon-line" id="crayon-5c07c606eb31a029421126-15"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">rename</span><span class="crayon-sy">(</span><span class="crayon-v">index</span><span class="crayon-o">=</span><span class="crayon-r">lambda</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">x</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Mass renaming of index</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Filter, Sort and Group By</strong></h2>
+<p>Methods for filtering, sorting and grouping your data:</p>
+		<div id="crayon-5c07c606eb31c302940377" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Filter, Sort, and Group By</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-3">3</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-4">4</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-5">5</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-6">6</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-7">7</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-8">8</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-9">9</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-10">10</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-11">11</div><div class="crayon-num" data-line="crayon-5c07c606eb31c302940377-12">12</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb31c302940377-1"><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">col</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-cn">0.5</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Rows where the col column is greater than 0.5</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-2"><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-sy">(</span><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">col</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-cn">0.5</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">&amp;</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">df</span><span class="crayon-sy">[</span><span class="crayon-v">col</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-h"> </span><span class="crayon-cn">0.7</span><span class="crayon-sy">)</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-c"># Rows where 0.5 &lt; col &lt; 0.7</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-3"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">sort_values</span><span class="crayon-sy">(</span><span class="crayon-v">col1</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Sorts values by col1 in ascending order</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-4"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">sort_values</span><span class="crayon-sy">(</span><span class="crayon-v">col2</span><span class="crayon-sy">,</span><span class="crayon-v">ascending</span><span class="crayon-o">=</span><span class="crayon-t">False</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Sorts values by col2 in descending order</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-5"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">sort_values</span><span class="crayon-sy">(</span><span class="crayon-sy">[</span><span class="crayon-v">col1</span><span class="crayon-sy">,</span><span class="crayon-v">col2</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">ascending</span><span class="crayon-o">=</span><span class="crayon-sy">[</span><span class="crayon-t">True</span><span class="crayon-sy">,</span><span class="crayon-t">False</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Sorts values by col1 in ascending order then col2 in descending order</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-6"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">groupby</span><span class="crayon-sy">(</span><span class="crayon-v">col</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns a groupby object for values from one column</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-7"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">groupby</span><span class="crayon-sy">(</span><span class="crayon-sy">[</span><span class="crayon-v">col1</span><span class="crayon-sy">,</span><span class="crayon-v">col2</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns a groupby object values from multiple columns</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-8"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">groupby</span><span class="crayon-sy">(</span><span class="crayon-v">col1</span><span class="crayon-sy">)</span><span class="crayon-sy">[</span><span class="crayon-v">col2</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">mean</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Returns the mean of the values in col2, grouped by the values in col1 (mean can be replaced with almost any function from the statistics section)</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-9"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">pivot_table</span><span class="crayon-sy">(</span><span class="crayon-v">index</span><span class="crayon-o">=</span><span class="crayon-v">col1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">values</span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">col2</span><span class="crayon-sy">,</span><span class="crayon-v">col3</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">aggfunc</span><span class="crayon-o">=</span><span class="crayon-v">mean</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Creates a pivot table that groups by col1 and calculates the mean of col2 and col3</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-10"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">groupby</span><span class="crayon-sy">(</span><span class="crayon-v">col1</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">agg</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-v">mean</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Finds the average across all columns for every unique column 1 group</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-11"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-k ">apply</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-v">mean</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Applies a function across each column</span></div><div class="crayon-line" id="crayon-5c07c606eb31c302940377-12"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-k ">apply</span><span class="crayon-sy">(</span><span class="crayon-v">np</span><span class="crayon-sy">.</span><span class="crayon-k ">max</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Applies a function across each row</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Joining and Combining</strong></h2>
+<p>Methods for combining two dataframes:</p>
+		<div id="crayon-5c07c606eb31e606158862" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Joining and Combining</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb31e606158862-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb31e606158862-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb31e606158862-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb31e606158862-1"><span class="crayon-v">df1</span><span class="crayon-sy">.</span><span class="crayon-e">append</span><span class="crayon-sy">(</span><span class="crayon-v">df2</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Adds the rows in df1 to the end of df2 (columns should be identical)</span></div><div class="crayon-line" id="crayon-5c07c606eb31e606158862-2"><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">concat</span><span class="crayon-sy">(</span><span class="crayon-sy">[</span><span class="crayon-v">df1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">df2</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Adds the columns in df1 to the end of df2 (rows should be identical)</span></div><div class="crayon-line" id="crayon-5c07c606eb31e606158862-3"><span class="crayon-v">df1</span><span class="crayon-sy">.</span><span class="crayon-e">join</span><span class="crayon-sy">(</span><span class="crayon-v">df2</span><span class="crayon-sy">,</span><span class="crayon-v">on</span><span class="crayon-o">=</span><span class="crayon-v">col1</span><span class="crayon-sy">,</span><span class="crayon-v">how</span><span class="crayon-o">=</span><span class="crayon-s">'inner'</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># SQL-style joins the columns in df1 with the columns on df2 where the rows for col have identical values. how can be one of 'left', 'right', 'outer', 'inner'&lt;strong&gt;&nbsp;&lt;/strong&gt;</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Writing Data</strong></h2>
+<p>And finally, when you have produced results with your analysis, there are several ways you can export your data:</p>
+		<div id="crayon-5c07c606eb320206148544" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Writing Data</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -19px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb320206148544-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb320206148544-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb320206148544-3">3</div><div class="crayon-num" data-line="crayon-5c07c606eb320206148544-4">4</div><div class="crayon-num" data-line="crayon-5c07c606eb320206148544-5">5</div><div class="crayon-num" data-line="crayon-5c07c606eb320206148544-6">6</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb320206148544-1"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">to_csv</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Writes to a CSV file</span></div><div class="crayon-line" id="crayon-5c07c606eb320206148544-2"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">to_excel</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Writes to an Excel file</span></div><div class="crayon-line" id="crayon-5c07c606eb320206148544-3"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">to_sql</span><span class="crayon-sy">(</span><span class="crayon-v">table_name</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">connection_object</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Writes to a SQL table</span></div><div class="crayon-line" id="crayon-5c07c606eb320206148544-4"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">to_json</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Writes to a file in JSON format</span></div><div class="crayon-line" id="crayon-5c07c606eb320206148544-5"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">to_html</span><span class="crayon-sy">(</span><span class="crayon-v">filename</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Saves as an HTML table</span></div><div class="crayon-line" id="crayon-5c07c606eb320206148544-6"><span class="crayon-v">df</span><span class="crayon-sy">.</span><span class="crayon-e">to_clipboard</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-c"># Writes to the clipboard</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Machine Learning</strong></h2>
+<p>The Scikit-Learn library contains useful methods for training and applying machine learning models. Our <a href="https://elitedatascience.com/python-machine-learning-tutorial-scikit-learn" target="_blank" rel="noopener">Scikit-Learn tutorial</a>&nbsp;provides more context for the code below.</p>
+<p>For a complete list of the Supervised Learning, Unsupervised Learning, and Dataset Transformation, and Model Evaluation modules in Scikit-Learn, please refer to its <a href="http://scikit-learn.org/stable/user_guide.html" target="_blank" rel="noopener">user guide</a>.</p>
+		<div id="crayon-5c07c606eb321366051210" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" no-popup minimize scroll-mouseover disable-anim" style="margin-top: 10px; margin-bottom: 15px; font-size: 13px !important; line-height: 22px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-title">Machine Learning</span>
+			<div class="crayon-tools" style="font-size: 13px !important;height: 19.5px !important; line-height: 19.5px !important;"><span class="crayon-language">Python</span></div></div>
+			<div class="crayon-info" style="min-height: 18.2px !important; line-height: 18.2px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -27px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 13px !important; line-height: 22px !important;"><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-1">1</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-2">2</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-3">3</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-4">4</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-5">5</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-6">6</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-7">7</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-8">8</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-9">9</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-10">10</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-11">11</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-12">12</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-13">13</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-14">14</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-15">15</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-16">16</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-17">17</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-18">18</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-19">19</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-20">20</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-21">21</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-22">22</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-23">23</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-24">24</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-25">25</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-26">26</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-27">27</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-28">28</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-29">29</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-30">30</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-31">31</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-32">32</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-33">33</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-34">34</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-35">35</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-36">36</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-37">37</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-38">38</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-39">39</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-40">40</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-41">41</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-42">42</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-43">43</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-44">44</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-45">45</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-46">46</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-47">47</div><div class="crayon-num" data-line="crayon-5c07c606eb321366051210-48">48</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 13px !important; line-height: 22px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5c07c606eb321366051210-1"><span class="crayon-c"># Import libraries and modules</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-2"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">numpy </span><span class="crayon-st">as</span><span class="crayon-h"> </span><span class="crayon-e">np</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-3"><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">pandas </span><span class="crayon-st">as</span><span class="crayon-h"> </span><span class="crayon-e">pd</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-4"><span class="crayon-e"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-5"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">model_selection </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">train_test_split</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-6"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-e">sklearn </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">preprocessing</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-7"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">ensemble </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">RandomForestRegressor</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-8"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">pipeline </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">make_pipeline</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-9"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">model_selection </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-e">GridSearchCV</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-10"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">metrics </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-v">mean_squared_error</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-e">r2_score</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-11"><span class="crayon-st">from</span><span class="crayon-h"> </span><span class="crayon-v">sklearn</span><span class="crayon-sy">.</span><span class="crayon-e">externals </span><span class="crayon-r">import</span><span class="crayon-h"> </span><span class="crayon-v">joblib</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-12"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-13"><span class="crayon-c"># Load red wine data.</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-14"><span class="crayon-v">dataset_url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'http://mlr.cs.umass.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv'</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-15"><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">pd</span><span class="crayon-sy">.</span><span class="crayon-e">read_csv</span><span class="crayon-sy">(</span><span class="crayon-v">dataset_url</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">sep</span><span class="crayon-o">=</span><span class="crayon-s">';'</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-16"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-17"><span class="crayon-c"># Split data into training and test sets</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-18"><span class="crayon-v">y</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">data</span><span class="crayon-sy">.</span><span class="crayon-i">quality</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-19"><span class="crayon-v">X</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">data</span><span class="crayon-sy">.</span><span class="crayon-e">drop</span><span class="crayon-sy">(</span><span class="crayon-s">'quality'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">axis</span><span class="crayon-o">=</span><span class="crayon-cn">1</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-20"><span class="crayon-v">X_train</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">X_test</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y_train</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y_test</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">train_test_split</span><span class="crayon-sy">(</span><span class="crayon-v">X</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">test_size</span><span class="crayon-o">=</span><span class="crayon-cn">0.2</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">random_state</span><span class="crayon-o">=</span><span class="crayon-cn">123</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">stratify</span><span class="crayon-o">=</span><span class="crayon-v">y</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-24"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-25"><span class="crayon-c"># Declare data preprocessing steps</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-26"><span class="crayon-v">pipeline</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">make_pipeline</span><span class="crayon-sy">(</span><span class="crayon-v">preprocessing</span><span class="crayon-sy">.</span><span class="crayon-e">StandardScaler</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-27"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-e">RandomForestRegressor</span><span class="crayon-sy">(</span><span class="crayon-v">n_estimators</span><span class="crayon-o">=</span><span class="crayon-cn">100</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-28"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-29"><span class="crayon-c"># Declare hyperparameters to tune</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-30"><span class="crayon-v">hyperparameters</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-s">'randomforestregressor__max_features'</span><span class="crayon-h"> </span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-s">'auto'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'sqrt'</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'log2'</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-31"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">'randomforestregressor__max_depth'</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-t">None</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">5</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">3</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-32"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-33"><span class="crayon-c"># Tune model using cross-validation pipeline</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-34"><span class="crayon-v">clf</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">GridSearchCV</span><span class="crayon-sy">(</span><span class="crayon-v">pipeline</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">hyperparameters</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">cv</span><span class="crayon-o">=</span><span class="crayon-cn">10</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-35"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-36"><span class="crayon-v">clf</span><span class="crayon-sy">.</span><span class="crayon-e">fit</span><span class="crayon-sy">(</span><span class="crayon-v">X_train</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">y_train</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-37"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-38"><span class="crayon-c"># Refit on the entire training set</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-39"><span class="crayon-c"># No additional code needed if clf.refit == True (default is True)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-40"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-41"><span class="crayon-c"># Evaluate model pipeline on test data</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-42"><span class="crayon-v">pred</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">clf</span><span class="crayon-sy">.</span><span class="crayon-e">predict</span><span class="crayon-sy">(</span><span class="crayon-v">X_test</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-43"><span class="crayon-k ">print</span><span class="crayon-h"> </span><span class="crayon-e">r2_score</span><span class="crayon-sy">(</span><span class="crayon-v">y_test</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">pred</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-44"><span class="crayon-k ">print</span><span class="crayon-h"> </span><span class="crayon-e">mean_squared_error</span><span class="crayon-sy">(</span><span class="crayon-v">y_test</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">pred</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-45"><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-46"><span class="crayon-c"># Save model for future use</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-47"><span class="crayon-v">joblib</span><span class="crayon-sy">.</span><span class="crayon-e">dump</span><span class="crayon-sy">(</span><span class="crayon-v">clf</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'rf_regressor.pkl'</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5c07c606eb321366051210-48"><span class="crayon-c"># To load: clf2 = joblib.load('rf_regressor.pkl')</span></div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div><p></p>
+<h2><strong>Conclusion</strong></h2>
+<p>We’ve barely scratching the surface in terms of what you can do with Python and data science, but we hope this cheatsheet has given you a taste of what you can do!</p>
+<p><em>This post was kindly provided by our friend Kara Tan. Kara is a cofounder of&nbsp;<a href="http://altitudelabs.com/" data-saferedirecturl="https://www.google.com/url?hl=en&amp;q=http://altitudelabs.com/&amp;source=gmail&amp;ust=1511961091914000&amp;usg=AFQjCNF8O7m5E1Myl9K53wseL-cr-rQqNA">Altitude Labs</a>, a full-service app design and development agency that specializes in data driven design and personalization.</em></p>
+<p><strong>Additional Resources:</strong></p>
+<ul>
+<li><a href="http://elitedatascience.com/machine-learning-projects-for-beginners" target="_blank" rel="noopener">8 Fun Machine Learning Projects for Beginners</a></li>
+<li><a href="http://elitedatascience.com/datasets" target="_blank" rel="noopener">Datasets for Data Science and Machine Learning</a></li>
+<li><a href="http://elitedatascience.com/beginner-mistakes" target="_blank" rel="noopener">9 Mistakes to Avoid When Starting Your Career in Data Science</a></li>
+<li><a href="http://elitedatascience.com/data-science-resources" target="_blank" rel="noopener">Free Data Science Resources for Beginners</a></li>
+<li><a href="http://elitedatascience.com/machine-learning-algorithms" target="_blank" rel="noopener">Overview of Modern Machine Learning Algorithms</a></li>
+</ul>
+<span id="tve_leads_end_content" style="display: block; visibility: hidden; border: 1px solid transparent;"></span><div class="tve-leads-post-footer tve-tl-anim tve-leads-track-post_footer-36 tl-anim-instant tve-trigger-hide"><div class="tl-style" id="tve_tcb2_set-032" data-state="36"><style type="text/css" class="tve_custom_style">@import url("//fonts.googleapis.com/css?family=Roboto:300,500,400&subset=latin");@media (min-width: 300px){#tve_editor [data-css="tve-u-155b017f1287a90"]:hover button { background-color: rgb(96, 96, 96) !important; }#tve_editor [data-css="tve-u-125b017f12879d1"]:hover input { color: rgb(0, 109, 94); background-color: rgb(224, 224, 224) !important; }[data-css="tve-u-75b017f1287879"] { margin-bottom: 10px !important; margin-top: 20px !important; }[data-css="tve-u-25b017f128773a"] { padding-top: 0px !important; padding-bottom: 0px !important; }[data-css="tve-u-15b017f12876e8"] { margin-top: 10px !important; margin-bottom: 20px !important; }[data-css="tve-u-105b017f1287952"] { margin-top: 0px !important; margin-bottom: 0px !important; }[data-css="tve-u-05b017f12876a7"] { overflow: hidden; border: none; background-color: rgb(255, 255, 255) !important; border-radius: 0px !important; padding: 20px !important; margin-top: 5px !important; }#tve_editor [data-css="tve-u-155b017f1287a90"] button { font-size: 18px; line-height: 30px; font-family: Roboto; border-radius: 40px; overflow: hidden; border: none; font-weight: 300; background-color: rgb(51, 51, 51) !important; }#tve_editor [data-css="tve-u-125b017f12879d1"] input { line-height: 28px; color: rgb(51, 51, 51); font-family: Roboto; font-weight: 300; border: none; border-radius: 40px; overflow: hidden; background-image: none !important; padding: 14px 18px !important; background-color: rgb(233, 233, 233) !important; }[data-css="tve-u-95b017f1287912"] { line-height: 27px !important; }#tve_editor [data-css="tve-u-95b017f1287912"] { font-family: Roboto; font-weight: 300; font-size: 18px !important; color: rgb(51, 51, 51) !important; }[data-css="tve-u-85b017f12878b8"] strong { font-weight: 500; }[data-css="tve-u-85b017f12878b8"] { line-height: 40px !important; }#tve_editor [data-css="tve-u-85b017f12878b8"] { font-family: Roboto; font-weight: 300; color: rgb(51, 51, 51) !important; font-size: 32px !important; }[data-css="tve-u-55b017f12877f8"] { max-width: 75%; }[data-css="tve-u-35b017f1287779"] { max-width: 25%; }[data-css="tve-u-45b017f12877b9"] { float: none; margin-left: auto; margin-right: auto; width: 130px; box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 5px; margin-top: 0px !important; margin-bottom: 0px !important; }}@media (max-width: 767px){[data-css="tve-u-05b017f12876a7"] { padding: 14px !important; }[data-css="tve-u-65b017f1287837"] { text-align: center; }[data-css="tve-u-85b017f12878b8"] { line-height: 1.2em !important; }#tve_editor [data-css="tve-u-85b017f12878b8"] { font-size: 28px !important; }[data-css="tve-u-45b017f12877b9"] { width: 90px; margin-bottom: 10px !important; }}</style><div class="tve-leads-conversion-object" data-tl-type="post_footer"><div class="tve_flt"><div id="tve_editor" class="tve_shortcode_editor"><div class="thrv-leads-form-box tve_no_drag tve_no_icons thrv_wrapper tve_editor_main_content thrv-leads-in-content tve_empty_dropzone" style="" data-css="tve-u-05b017f12876a7"><div class="thrv_wrapper thrv-columns" style="" data-css="tve-u-15b017f12876e8"><div class="tcb-flex-row tcb-resized tcb--cols--2" data-css="tve-u-25b017f128773a"><div class="tcb-flex-col" data-css="tve-u-35b017f1287779" style=""><div class="tcb-col tve_empty_dropzone"><div class="thrv_wrapper tve_image_caption on_hover" data-css="tve-u-45b017f12877b9" style=""><span class="tve_image_frame" style="width: 100%;"><img class="tve_image wp-image-1756" alt="Python for Data Science Cheatsheet" width="240" height="340" title="Python for Data Science Cheatsheet" data-id="1756" src="./Python Cheat Sheet for Data Science_files/Data-Science-Basics-Cheatsheet-Cover.jpg" style="width: 100%;"></span></div></div></div><div class="tcb-flex-col" data-css="tve-u-55b017f12877f8" style=""><div class="tcb-col tve_empty_dropzone" style="" data-css="tve-u-65b017f1287837"><div class="thrv_wrapper thrv_text_element tve_empty_dropzone" style="" data-css="tve-u-75b017f1287879"><p data-css="tve-u-85b017f12878b8" data-default="Enter your text here..."><strong>Free: Python for DS Cheatsheet</strong></p></div><div class="thrv_wrapper thrv_text_element tve_empty_dropzone" style=""><p data-css="tve-u-95b017f1287912" data-default="Enter your text here...">You've read the tutorial, but what if you forget some of the syntax? No worries - just download the free <strong>PDF code cheatsheet</strong> for your future reference!</p></div></div></div></div></div><div class="thrv_wrapper thrv_lead_generation" data-connection="api" style="" data-css="tve-u-105b017f1287952"><input type="hidden" class="tve-lg-err-msg" value="{&quot;email&quot;:&quot;Email address invalid&quot;,&quot;phone&quot;:&quot;Phone number invalid&quot;,&quot;password&quot;:&quot;Password invalid&quot;,&quot;passwordmismatch&quot;:&quot;Password mismatch error&quot;,&quot;required&quot;:&quot;Required field missing&quot;}">
+<div class="thrv_lead_generation_container tve_clearfix">
+<form action="https://elitedatascience.com/python-cheat-sheet#" method="post" novalidate="novalidate">
+<div class="tve_lead_generated_inputs_container tve_clearfix tve_empty_dropzone">
+<div class="thrv_wrapper thrv-columns"><div class="tcb-flex-row tcb--cols--3"><div class="tcb-flex-col" data-css="tve-u-115b017f1287993"><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input tcb-icon-display tve_empty_dropzone" data-css="tve-u-125b017f12879d1">
+<input type="text" data-field="name" data-required="1" data-validation="" name="name" placeholder="First Name" data-placeholder="First Name" class="" style="">
+</div></div></div><div class="tcb-flex-col" data-css="tve-u-135b017f1287a11" style=""><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_lg_input tcb-icon-display tve_empty_dropzone" data-css="tve-u-125b017f12879d1">
+<input type="email" data-field="email" data-required="1" data-validation="email" name="email" placeholder="Email" data-placeholder="Email" class="" style="">
+</div></div></div><div class="tcb-flex-col" data-css="tve-u-145b017f1287a51" style=""><div class="tcb-col tve_empty_dropzone"><div class="tve_lg_input_container tve_submit_container tve_lg_submit tcb-icon-display tve_empty_dropzone" data-css="tve-u-155b017f1287a90">
+<button type="submit" class="tve-froala" style="">Send My Download</button>
+</div></div></div></div></div>
+</div>
+<input type="hidden" name="__tcb_lg_fc" id="__tcb_lg_fc" value="YToxOntzOjQ6ImRyaXAiO3M6OToiNjcwOTg0NDI3Ijt9"><input id="_submit_option" type="hidden" name="_submit_option" value="message"><input id="_autofill" type="hidden" name="_autofill" value=""><input id="__tcb_lg_msg" type="hidden" name="__tcb_lg_msg" value="YToyOntzOjU6ImVycm9yIjtzOjY6IkVycm9yISI7czo3OiJzdWNjZXNzIjtzOjc0OiJFdXJla2EhIFBsZWFzZSBjaGVjayB5b3VyIGVtYWlsIGluIGEgY291cGxlIG1pbnV0ZXMgZm9yIHRoZSBkb3dubG9hZCBsaW5rLiI7fQ=="><input type="hidden" id="drip_type" class="tve-api-extra" name="drip_type" value="list"><input type="hidden" id="drip_first_name_field" class="tve-api-extra" name="drip_first_name_field" value="thrive_first_name"><input type="hidden" id="drip_last_name_field" class="tve-api-extra" name="drip_last_name_field" value="thrive_last_name"><input type="hidden" id="drip_optin" class="tve-api-extra" name="drip_optin" value="d"></form>
+</div>
+</div></div></div></div></div></div></div></div><aside class="mashsb-container mashsb-main mashsb-stretched"><div class="mashsb-box"><div class="mashsb-count mash-small" style="float:left;"><div class="counts mashsbcount">177</div><span class="mashsb-sharetext">SHARES</span></div><div class="mashsb-buttons"><a class="mashicon-facebook mash-small mash-center mashsb-noshadow" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Share</span></a><a class="mashicon-google mash-small mash-center mashsb-noshadow" href="https://plus.google.com/share?text=Python+Cheat+Sheet+for+Data+Science&amp;url=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Google</span></a><a class="mashicon-linkedin mash-small mash-center mashsb-noshadow" href="https://www.linkedin.com/shareArticle?trk=Python+Cheat+Sheet+for+Data+Science&amp;url=https%3A%2F%2Felitedatascience.com%2Fpython-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Linkedin</span></a><a class="mashicon-twitter mash-small mash-center mashsb-noshadow" href="https://twitter.com/intent/tweet?text=Python%20Cheat%20Sheet%20for%20Data%20Science&amp;url=https://elitedatascience.com/python-cheat-sheet" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Tweet</span></a><div class="onoffswitch2 mash-small mashsb-noshadow" style="display:none;"></div></div>
+            </div>
+                <div style="clear:both;"></div><div class="mashsb-toggle-container"></div></aside>
+            <!-- Share buttons by mashshare.net - Version: 3.5.3--></div>
+
+
+                <aside class="pn-art-wrap">
+                    <hr>
+                    <div class="row">
+                        <a href="https://elitedatascience.com/open-source-vs-commercial-ml-software" title="Open Source vs Commercial Machine Learning Software" class="col-xs-6">
+                            <strong>« Previous Post</strong>
+                            <span class="pna-title">Open Source vs Commercial Machine Learning Software</span>
+                        </a>
+                        <a href="https://elitedatascience.com/become-a-data-scientist" title="How to Become a Data Scientist, The Self-Starter Way" class="col-xs-6">
+                            <strong>Next Post »</strong>
+                            <span class="pna-title">How to Become a Data Scientist, The Self-Starter Way</span>
+                        </a>
+                    </div> <!--// .row -->
+                </aside>
+                                            </div>
+                            </div>
+                        </div>
+                                        <div class="op_optin_single_before_footer_container op_optin_style_dark">
+    <div id="op-trigger-op_theme_popup_5c07c6073084a" class="optin-box-optimizetheme-lightbox optin-box-optimizetheme optin-box-optimizetheme-before-footer optin-box-optimizetheme-dark">
+        <div class="container op-container optin-box-content optin-box-optimizetheme-content"><div class="optin-box-optimizetheme-headline-container"><h2 class="optin-box-optimizetheme-headline">Free: Data Science Downloads</h2><p class="optin-box-optimizetheme-subheadline">10+ Bonus Resources for Data Science &amp; Machine Learning</p></div>
+            <div class="optin-box-optimizetheme-open-lightbox-container">
+                <button type="button" class="default-button" data-toggle="modal" data-target="#op_theme_popup_5c07c6073084a">Get instant access!</button>
+            </div>
+        </div></div>
+
+    <div class="optin-box-optimizetheme-modal modal fade" id="op_theme_popup_5c07c6073084a" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <button type="button" class="close optin-box-optimizetheme-close-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+            <div class="modal-content">
+                <div class="modal-body">
+                <aside id="op-optin-5c070c529ed90" class="optin-box optin-box-optimizetheme optin-box-optimizetheme-before-footer optin-box-optimizetheme-dark">
+    <div class="container op-container optin-box-content optin-box-optimizetheme-content">
+        
+        <div class="optin-box-optimizetheme-headline-container">
+            <h2 class="optin-box-optimizetheme-headline">EDS Subscriber Vault</h2>            <p class="optin-box-optimizetheme-subheadline">Download free coding cheatsheets, machine learning checklists, PDF worksheets, resource lists, and more...</p>        </div>
+
+        <div class="optin-box-optimizetheme-form-container">
+        <form action="https://www.getdrip.com/forms/297767675/submissions" method="post" class="cf op-optin-validation"><div style="display:none"><input type="hidden" name="redirect_url" value="https://www.getdrip.com/forms/297767675/submissions"><input type="hidden" name="email_field" value="fields[email]"></div>                <div class="text-boxes optin-box-optimizetheme-text-boxes">
+                    <div class="text-box name"><input type="text" required="required" name="fields[first_name]" placeholder="Enter your first name" value=""></div><div class="text-box email"><input type="email" required="required" name="fields[email]" placeholder="Enter your best email" value=""></div>                </div>
+                <button type="submit" class="default-button"><span>Let's Start!</span></button>                            <input type="hidden" id="op_optin_nonce" name="op_optin_nonce" value="7c50327666"><input type="hidden" name="_wp_http_referer" value="/python-cheat-sheet"></form>
+        </div>
+        <div class="optin-box-optimizetheme-privacy">No spam. No nonsense.</div>
+            </div>
+    <style>#op-optin-5c070c529ed90 .default-button { color: #FFFFFF; background-color: #276CF2; }#op-optin-5c070c529ed90 .default-button:hover { background-color: #0054cc; }</style>
+</aside>
+
+                </div>
+            </div>
+        </div>
+    </div><style>#op-trigger-op_theme_popup_5c07c6073084a .optin-box-optimizetheme-open-lightbox-container .default-button { color: #FFFFFF; background-color: #276CF2; }#op-trigger-op_theme_popup_5c07c6073084a .optin-box-optimizetheme-open-lightbox-container .default-button:hover { background-color: #0054cc; }</style></div>                </div><!-- #primary -->
+            </article>
+
+
+        </main>
+    </div> <!-- #page .hfeed .site -->
+        <footer id="colophon" class="site-footer" role="contentinfo" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+            <section class="op-footer">
+                <div class="container op-container">
+                    <div class="row">
+                        
+        <div class="col-sm-3">
+            <aside id="nav_menu-4" class="widget widget_nav_menu"><h2 class="widget-title">Links</h2><div class="menu-footer-navigation-links-container"><ul id="menu-footer-navigation-links" class="menu"><li id="menu-item-1598" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1598"><a href="https://elitedatascience.com/start-here">Start Here</a></li>
+<li id="menu-item-1597" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1597"><a href="https://elitedatascience.com/">Homepage</a></li>
+<li id="menu-item-1599" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1599"><a href="https://elitedatascience.com/login">Login</a></li>
+</ul></div></aside>        </div>
+
+        
+        <div class="col-sm-3">
+            <aside id="nav_menu-2" class="widget widget_nav_menu"><h2 class="widget-title">Articles</h2><div class="menu-footer-navigation-articles-container"><ul id="menu-footer-navigation-articles" class="menu"><li id="menu-item-1594" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1594"><a href="https://elitedatascience.com/category/guides">Guides</a></li>
+<li id="menu-item-1590" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1590"><a href="https://elitedatascience.com/category/explainers">Concept Explainers</a></li>
+<li id="menu-item-1593" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1593"><a href="https://elitedatascience.com/category/tutorials">Code Tutorials</a></li>
+<li id="menu-item-1592" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1592"><a href="https://elitedatascience.com/category/career">Career Help</a></li>
+<li id="menu-item-1591" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1591"><a href="https://elitedatascience.com/category/resources">Tools &amp; Resources</a></li>
+</ul></div></aside>        </div>
+
+        
+        <div class="col-sm-3">
+            <aside id="nav_menu-3" class="widget widget_nav_menu"><h2 class="widget-title">Products</h2><div class="menu-footer-navigation-products-container"><ul id="menu-footer-navigation-products" class="menu"><li id="menu-item-1596" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1596"><a href="https://elitedatascience.com/machine-learning-masterclass">Machine Learning Masterclass</a></li>
+<li id="menu-item-1595" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1595"><a href="https://elitedatascience.com/interview-prep-kit">Interview Prep Kit</a></li>
+</ul></div></aside>        </div>
+
+        
+        <div class="col-sm-3">
+            <aside id="custom_html-2" class="widget_text widget widget_custom_html"><h2 class="widget-title">Share</h2><div class="textwidget custom-html-widget"><div style="margin-top:-10px">
+<aside class="mashsb-container mashsb-main mashsb-stretched"><div class="mashsb-box"><div class="mashsb-buttons"><a class="mashicon-facebook mash-small mash-center mashsb-noshadow" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Felitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Share</span></a><a class="mashicon-google mash-small mash-center mashsb-noshadow" href="https://plus.google.com/share?text=Python+Cheat+Sheet+for+Data+Science&amp;url=https%3A%2F%2Felitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Google</span></a><a class="mashicon-linkedin mash-small mash-center mashsb-noshadow" href="https://www.linkedin.com/shareArticle?trk=Python+Cheat+Sheet+for+Data+Science&amp;url=https%3A%2F%2Felitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Linkedin</span></a><a class="mashicon-twitter mash-small mash-center mashsb-noshadow" href="https://twitter.com/intent/tweet?text=Python%20Cheat%20Sheet%20for%20Data%20Science&amp;url=https://elitedatascience.com" target="_blank" rel="noopener nofollow"><span class="icon"></span><span class="text">Tweet</span></a><div class="onoffswitch2 mash-small mashsb-noshadow" style="display:none;"></div></div></div>
+                    <div style="clear:both;"></div><div class="mashsb-toggle-container"></div></aside>
+            <!-- Share buttons made by mashshare.net - Version: 3.5.3-->
+</div>
+</div></aside>        </div>
+
+                            </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                                                    </div>
+                        <div class="col-sm-12 footer-copyright">
+                            <p>Copyright © 2016-2018 · EliteDataScience.com · All Rights Reserved&nbsp;· <a href="https://elitedatascience.com/terms-of-service">Terms</a>&nbsp;· <a href="https://elitedatascience.com/privacy-policy">Privacy</a></p>                                                    </div>
+                    </div>
+                </div>
+            </section>
+            <script type="text/javascript">
+/* <![CDATA[ */
+var TVE_Ult_Data = {"ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","ajax_load_action":"tve_ult_ajax_load","conversion_events_action":"tve_ult_conversion_event","shortcode_campaign_ids":[],"matched_display_settings":[],"campaign_ids":[],"post_id":1510,"is_singular":true,"tu_em":""};
+/* ]]> */
+</script>
+		<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/no-campaign.min.js.download"></script><aside id="mashfs-main" class="mashfs-hide mashfs-left" style="background-color: transparent; margin-left: 0px; margin-right: 0px; top: 164px; display: block;"><span class="mashfs-buttons"><a href="https://www.linkedin.com/shareArticle?trk=Python%20Cheat%20Sheet%20for%20Data%20Science&amp;url=https://elitedatascience.com/python-cheat-sheet" class="mashicon-linkedin mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="http://www.facebook.com/sharer.php?u=https://elitedatascience.com/python-cheat-sheet" class="mashicon-facebook mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://plus.google.com/share?text=Python%20Cheat%20Sheet%20for%20Data%20Science&amp;url=https://elitedatascience.com/python-cheat-sheet" class="mashicon-google mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://twitter.com/intent/tweet?text=Python+Cheat+Sheet+for+Data+Science&amp;url=https://elitedatascience.com/python-cheat-sheet" class="mashicon-twitter mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="http://service.weibo.com/share/share.php?url=https://elitedatascience.com/python-cheat-sheet&amp;title=Python%20Cheat%20Sheet%20for%20Data%20Science" class="mashicon-weibo mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="mailto:?subject=Check%20out%20this%20site%20Python%20Cheat%20Sheet%20for%20Data%20Science&amp;body=Check%20out%20this%20site%20https://elitedatascience.com/python-cheat-sheet" class="mashicon-mail mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://getpocket.com/save?title=Python%20Cheat%20Sheet%20for%20Data%20Science&amp;url=https://elitedatascience.com/python-cheat-sheet" class="mashicon-pocket mashfs-popup-share" style="margin-bottom: 0px;"><span class="icon"></span></a><a href="https://elitedatascience.com/python-cheat-sheet#" id="mashfs-hidebtn" style="background-color: transparent;color: #5a5a5f;">&lt;&lt;</a></span></aside><!-- Drip -->
+<script type="text/javascript">
+  var _dcq = _dcq || [];
+  var _dcs = _dcs || {}; 
+  _dcs.account = '8015924';
+  
+  (function() {
+    var dc = document.createElement('script');
+    dc.type = 'text/javascript'; dc.async = true; 
+    dc.src = '//tag.getdrip.com/8015924.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(dc, s);
+  })();
+</script><script type="text/javascript">
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/elitedatascience.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}},"cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/scripts.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mashsb = {"shares":"177","round_shares":"1","animate_shares":"0","dynamic_buttons":"0","share_url":"https:\/\/elitedatascience.com\/python-cheat-sheet","title":"Python+Cheat+Sheet+for+Data+Science","image":"https:\/\/elitedatascience.com\/wp-content\/uploads\/2017\/11\/Python-Cheat-Sheet-Feature-Without-Text.jpg","desc":"Pandas, Numpy, and Scikit-Learn are among the most popular libraries for data science and analysis with Python.\r\n\r\nNumpy is used for lower level scientific computation. Pandas is built on top of Numpy and designed for practical \u2026","hashtag":"","subscribe":"content","subscribe_url":"","activestatus":"1","singular":"1","twitter_popup":"1","refresh":"1","nonce":"512fafb9c1","postid":"1510","servertime":"1544013319","ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/mashsb.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tve_frontend_options = {"is_editor_page":"","page_events":[],"is_single":"1","ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","social_fb_app_id":"","dash_url":"https:\/\/elitedatascience.com\/wp-content\/plugins\/thrive-ultimatum\/thrive-dashboard","translations":{"Copy":"Copy"}};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/frontend.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/frontend.min.js(1).download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mashnet = {"body":"Check out this article: ","subject":"Check out this site","pinterest_select":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/mashnet.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/core.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/widget.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/accordion.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/opplus-front-all.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/all.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tve_dash_front = {"ajaxurl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","force_ajax_send":"","is_crawler":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/frontend.min.js(2).download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/q2w3-fixed-widget.min.js.download"></script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/wp-embed.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var OPValidation = {"labels":{"email":"Please enter valid email address","text":"Please fill all fields"},"ajaxUrl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","nonce":"d6affaa0f1"};
+var OPValidation = {"labels":{"email":"Please enter valid email address","text":"Please fill all fields"},"ajaxUrl":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","nonce":"d6affaa0f1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Python Cheat Sheet for Data Science_files/validation.min.js.download"></script>
+<script type="text/javascript">/*<![CDATA[*/if ( !window.TL_Const ) {var TL_Const={"security":"8d582a9cbd","ajax_url":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","forms":[],"action_conversion":"tve_leads_ajax_conversion","action_impression":"tve_leads_ajax_impression","ajax_load":1,"main_group_id":1851,"display_options":{"allowed_post_types":[],"flag_url_match":false},"custom_post_data":[],"current_screen":{"screen_type":4,"screen_id":1510},"ignored_fields":["email","_captcha_size","_captcha_theme","_captcha_type","_submit_option","_use_captcha","g-recaptcha-response","__tcb_lg_fc","__tcb_lg_msg","_state","_form_type","_error_message_option","_back_url","_submit_option","url","_asset_group","_asset_option","mailchimp_optin"]};} else {ThriveGlobal.$j.extend(true, TL_Const, {"security":"8d582a9cbd","ajax_url":"https:\/\/elitedatascience.com\/wp-admin\/admin-ajax.php","forms":[],"action_conversion":"tve_leads_ajax_conversion","action_impression":"tve_leads_ajax_impression","ajax_load":1,"main_group_id":1851,"display_options":{"allowed_post_types":[],"flag_url_match":false},"custom_post_data":[],"current_screen":{"screen_type":4,"screen_id":1510},"ignored_fields":["email","_captcha_size","_captcha_theme","_captcha_type","_submit_option","_use_captcha","g-recaptcha-response","__tcb_lg_fc","__tcb_lg_msg","_state","_form_type","_error_message_option","_back_url","_submit_option","url","_asset_group","_asset_option","mailchimp_optin"]})} /*]]> */</script>        </footer>
+
+
+
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","469443103391738");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=469443103391738&amp;ev=PageView&amp;noscript=1"></noscript>
+
+<script type="text/javascript">
+	(function ($) {
+	$(function () {
+		var event_data = {"form_id":"tve-leads-track-in_content-35","form_type":"in_content"};
+		event_data.source = 'page_load';
+		setTimeout(function () {
+			ThriveGlobal.$j(TL_Front).trigger('showform.thriveleads', event_data);
+			}, 200);
+		});
+	})
+(ThriveGlobal.$j);
+</script><script type="text/javascript">
+	(function ($) {
+	var _DELTA = 80,
+	event_data = {"form_id":"tve-leads-track-post_footer-36","form_type":"post_footer"},
+	$window = $(window),
+	trigger_elements = function (elem) {
+	if (elem.offset().top + _DELTA < $window.height() + $window.scrollTop() && elem.offset().top + elem.outerHeight() > $window.scrollTop() + _DELTA) {
+	elem.addClass('tve-leads-viewport-triggered');
+	ThriveGlobal.$j(TL_Front).trigger('showform.thriveleads', event_data);
+	}
+	};
+	event_data.source = 'viewport';
+	$(document).ready(function () {
+	var _elem = $('.' + event_data.form_id);
+	if (!_elem.length) {
+	return;
+	}
+
+	$window.scroll(function() {
+	if (!_elem.hasClass('tve-leads-viewport-triggered')) {
+	trigger_elements(_elem);
+	}
+	});
+	trigger_elements(_elem);
+	});
+	})
+(ThriveGlobal.$j);
+</script><link rel="stylesheet" href="./Python Cheat Sheet for Data Science_files/load-styles.php" type="text/css" media="all">
+<link rel="stylesheet" id="wpe-common-css" href="./Python Cheat Sheet for Data Science_files/wpe-common.css" type="text/css" media="all">
+<link rel="stylesheet" id="thickbox-css" href="./Python Cheat Sheet for Data Science_files/thickbox.css" type="text/css" media="all"></body></html>
